@@ -1,0 +1,1 @@
+- there was no mention of phase randomization in the paper, but the shown stimuli seem to have random phases. I therefore randomized the phases as well. Uniform randomization between 0 and 360 degrees, independent for each gabor patch. 
