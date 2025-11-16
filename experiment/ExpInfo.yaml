@@ -1,0 +1,63 @@
+# Experiment Information
+
+Hardware:
+  Display:
+    Type: "VisionMasterPro-450"
+    MeanLuminance_cd/m2: 40
+    RefreshRate_Hz: 70
+    ViewingDistance_cm: 100
+    GammaCorrection: True
+  EyeTracker:
+    Usage: False
+
+Stimulus:
+  Fixation:
+    Duration_ms: 500
+    Shape: "circle"
+    Color: "white"
+    Diamater_degrees: 0.1
+  GaborPatch:
+    Duration_ms: 150
+    MitchellContrast: 0.5
+    SpatialFrequency_cpd: 12
+    Sigma_degrees: 0.04
+    PatchSize_sigma: 6
+    Orientation_degrees: 
+      - 0
+      - 15
+      - 30
+      - 45
+      - 60
+      - 75
+      - 90
+  Grid:
+    Rows: 
+      - 1
+      - 12
+    Columns: 48
+    Height_degrees: 2.64
+    Length_degrees: 10.56
+  Jitter:
+    Type: "Uniform"
+    Range_sigma: 1.2
+  VerticalSeperation_degrees: 0.86
+  HorizontalDisplacement_rows: 
+    - 1.0
+    - 0.5
+    - 0.0
+    - -0.5
+    - -1.0
+
+Procedure&Conditions:
+  BlockByOrientation: True
+  NumberOfTrialsPerOffset: 20
+  RandomTrialOrderPerBlock: True
+  Response:
+    Type: "Forced-choice task"
+    Options: 
+      - "Left"
+      - "Right"
+
+Instructions:
+  - "Participants were instructed to maintain fixation throughout the trial."
+  
