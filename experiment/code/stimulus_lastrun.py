@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on November 16, 2025, at 19:20
+    on November 18, 2025, at 10:02
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -391,6 +391,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     spacing = StimInfo["GaborPatch"]["PatchSize_sigma"] * sigma  # degrees
     frequency = StimInfo["GaborPatch"]["SpatialFrequency_cpd"] # cycles per degree
     initial_ori = StimInfo["GaborPatch"]["Orientation_degrees"][0] # degrees
+    mitchell_contrast = StimInfo["GaborPatch"]["MitchellContrast"] 
     jitter_amount = StimInfo["Jitter"]["Range_sigma"] * sigma  # max jitter in degrees
     
     # Generate grid 
@@ -418,6 +419,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         sizes=spacing,
         sfs=frequency,
         oris=orientations,
+        contrs=mitchell_contrast
     )
     StopKey = keyboard.Keyboard(deviceName='StopKey')
     
