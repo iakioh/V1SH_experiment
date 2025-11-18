@@ -1,1 +1,1 @@
-- there was no mention of phase randomization in the paper, but the shown stimuli seem to have random phases. I therefore randomized the phases as well. Uniform randomization between 0 and 360 degrees, independent for each gabor patch. 
+- I don't show the Gabor patch stimulus exactly for the given time, but only for a certain amount of frames. I need to store the exact timing, but haven't yet. In general, it is floor(refresh_rate * duration)

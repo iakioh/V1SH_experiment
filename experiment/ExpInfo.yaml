@@ -12,12 +12,12 @@ Hardware:
 
 Stimulus:
   Fixation:
-    Duration_ms: 500
+    Duration_s: 0.5
     Shape: "circle"
     Color: "white"
     Diamater_degrees: 0.1
   GaborPatch:
-    Duration_ms: 150
+    Duration_s: 0.15
     MitchellContrast: 0.5
     SpatialFrequency_cpd: 12
     Sigma_degrees: 0.04
