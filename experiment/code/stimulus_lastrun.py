@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on November 18, 2025, at 10:02
+    on November 18, 2025, at 12:52
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -33,7 +33,7 @@ import sys  # to get file system encoding
 
 from psychopy.hardware import keyboard
 
-# Run 'Before Experiment' code from Stimulus_2
+# Run 'Before Experiment' code from Stimulus
 from psychopy import visual
 import numpy as np
 import yaml
@@ -147,7 +147,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='\\\\kfs\\krothe\\Windows Folders\\My Documents\\V1SH_experiment\\experiment\\code\\v0_lastrun.py',
+        originPath='C:\\Users\\kai.rothe\\Documents\\V1SH_experiment\\experiment\\code\\stimulus_lastrun.py',
         savePickle=True, saveWideText=False,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -382,7 +382,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # Start Code - component code to be run after the window creation
     
     # --- Initialize components for Routine "trial" ---
-    # Run 'Begin Experiment' code from Stimulus_2
+    # Run 'Begin Experiment' code from Stimulus
     # Set parameters
     n_rows = StimInfo["Grid"]["Rows"][1]
     n_cols = StimInfo["Grid"]["Columns"]
@@ -460,7 +460,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     trial.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
-    # Run 'Begin Routine' code from Stimulus_2
+    # Run 'Begin Routine' code from Stimulus
     # Randomize locations
     jitter = np.random.uniform(-jitter_amount, jitter_amount, 
                                size=(2 * n_rows * n_cols, 2))
@@ -502,7 +502,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         tThisFlipGlobal = win.getFutureFlipTime(clock=None)
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
-        # Run 'Each Frame' code from Stimulus_2
+        # Run 'Each Frame' code from Stimulus
         gabor_array.draw()
         
         # *StopKey* updates

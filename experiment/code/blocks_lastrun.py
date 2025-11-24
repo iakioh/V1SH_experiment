@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on November 19, 2025, at 09:15
+    on November 19, 2025, at 17:38
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -32,6 +32,7 @@ import os  # handy system and path functions
 import sys  # to get file system encoding
 
 from psychopy.hardware import keyboard
+from psychopy_monkeys import Monkey
 
 # Run 'Before Experiment' code from TextureBorder
 from psychopy import visual
@@ -40,6 +41,7 @@ import yaml
 import os
 import math
 import pandas as pd
+import itertools
 
 # Get Experimental Info
 ExpInfo_path = os.path.join(os.path.dirname(__file__), '../ExpInfo.yaml')
@@ -149,7 +151,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\kai.rothe\\Documents\\V1SH_experiment\\experiment\\code\\trial_lastrun.py',
+        originPath='C:\\Users\\kai.rothe\\Documents\\V1SH_experiment\\experiment\\code\\blocks_lastrun.py',
         savePickle=True, saveWideText=False,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -279,6 +281,12 @@ def setupDevices(expInfo, thisExp, win):
             deviceClass='keyboard',
             deviceName='AnyButton',
         )
+    if deviceManager.getDevice('WaitForEsc') is None:
+        # initialise WaitForEsc
+        WaitForEsc = deviceManager.addDevice(
+            deviceClass='keyboard',
+            deviceName='WaitForEsc',
+        )
     # return True if completed successfully
     return True
 
@@ -389,6 +397,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # Start Code - component code to be run after the window creation
     
+    # --- Initialize components for Routine "Instruction" ---
+    
     # --- Initialize components for Routine "Fixation" ---
     FixationShape = visual.ShapeStim(
         win=win, name='FixationShape',
@@ -401,57 +411,73 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # --- Initialize components for Routine "Stimulus" ---
     # Run 'Begin Experiment' code from TextureBorder
     # Set parameters
-    n_rows = StimInfo["Grid"]["Rows"][1]
-    n_cols = StimInfo["Grid"]["Columns"]
-    vertical_seperation = StimInfo["VerticalSeperation_degrees"]
-    sigma = StimInfo["GaborPatch"]["Sigma_degrees"] # degrees
-    spacing = StimInfo["GaborPatch"]["PatchSize_sigma"] * sigma  # degrees
-    frequency = StimInfo["GaborPatch"]["SpatialFrequency_cpd"] # cycles per degree
-    initial_ori = StimInfo["GaborPatch"]["Orientation_degrees"][0] # degrees
-    mitchell_contrast = StimInfo["GaborPatch"]["MitchellContrast"] 
-    jitter_amount = StimInfo["Jitter"]["Range_sigma"] * sigma  # max jitter in degrees
-    duration = StimInfo["GaborPatch"]["Duration_s"]
     nReps = ExpInfo["Procedure&Conditions"]["NumberOfRepetitions"]
     seed = ExpInfo["Procedure&Conditions"]["RandomSeed"]
+    n_rows = StimInfo["Grid"]["Rows"]
+    n_col = StimInfo["Grid"]["Columns"]
+    vertical_seperation = StimInfo["VerticalSeperation_degrees"]
+    frequency = StimInfo["GaborPatch"]["SpatialFrequency_cpd"] # cycles per degree
+    mitchell_contrast = StimInfo["GaborPatch"]["MitchellContrast"] 
+    duration = StimInfo["GaborPatch"]["Duration_s"]
+    sigma = StimInfo["GaborPatch"]["Sigma_degrees"] # degrees
+    spacing = StimInfo["GaborPatch"]["PatchSize_sigma"] * sigma  # degrees
+    jitter_amount = StimInfo["Jitter"]["Range_sigma"] * sigma  # max jitter in degrees
+    session_index = int(expInfo["session"]) - 1 # starts with "001"
+    if len(StimInfo["GaborPatch"]["Orientation_degrees"]) <= session_index:
+        raise TypeError("Number of orientations <= session number.")
+    else:
+        orientation = StimInfo["GaborPatch"]["Orientation_degrees"][session_index]
     
-    # Save conditions for use in block and trial loop
-    displacement_df = pd.DataFrame({"displacement_rows" : StimInfo["HorizontalDisplacement_rows"]})
-    displacement_df.to_csv("displacement_conditions_temp.csv", index=False)
-    
-    orientations_df = pd.DataFrame({"orientation" : StimInfo["GaborPatch"]["Orientation_degrees"]})
-    orientations_df.to_csv("orientation_conditions_temp.csv", index=False)
+    # Create and save conditions sequence
+    conditions = list(itertools.product(n_rows, StimInfo["HorizontalDisplacement_rows"]))
+    conditions_df = pd.DataFrame(conditions, columns=['n_row', 'displacement_rows'])
+    conditions_df['session'] = session_index 
+    conditions_df['orientation_degrees'] = orientation  
+    filename = 'conditions.csv'
+    if os.path.exists(filename):
+        # Append without header
+        conditions_df.to_csv(filename, mode='a', header=False, index=False)
+    else:
+        # Create new file with header
+        conditions_df.to_csv(filename, index=False)
     
     # Pre-compute timing
     refresh_rate = win.getActualFrameRate() # Hz
     stimulus_frames = math.floor(refresh_rate * duration)
     
-    # Generate grid 
-    xs = np.linspace(-spacing*(n_cols-1)/2, spacing*(n_cols-1)/2, n_cols)
-    ys = np.linspace(0.0, spacing*(n_rows-1), n_rows)
-    xys_upper = np.array([(x, y + vertical_seperation / 2) for y in ys for x in xs])
-    xys_lower = np.array([(x, - y - vertical_seperation / 2) for y in ys for x in xs])
-    base_grid = np.concatenate([xys_upper, xys_lower])
+    # Pre-Compute stimuli
+    base_xys = {}
+    gabor_arrays = {}
+    for n_row_ in n_rows: # name n_row_ to avoid overwriting trial loop n_row condition
+        # Pre-compute grid
+        xs = np.linspace(-spacing * (n_col-1) / 2, spacing * (n_col-1) / 2, n_col)
+        ys = np.linspace(0.0, spacing*(n_row_-1), n_row_)
+        xys_upper = np.array([(x, y + vertical_seperation / 2) for y in ys for x in xs])
+        xys_lower = np.array([(x, - y - vertical_seperation / 2) for y in ys for x in xs])
+        xys = np.concatenate([xys_upper, xys_lower])
+        base_xys[n_row_] = xys
     
-    # Pre-compute orientations
-    oris_upper = np.full((n_rows, n_cols), initial_ori)
-    oris_upper[:, n_cols // 2 :] += 90
-    oris_lower = np.full((n_rows, n_cols), initial_ori)
-    oris_lower[:, : n_cols // 2] += 90
-    oris = np.concatenate([oris_upper.flatten(), oris_lower.flatten()])
+        # Pre-compute orientations
+        oris_upper = np.full((n_row_, n_col), orientation)
+        oris_upper[:, n_col // 2 :] += 90
+        oris_lower = np.full((n_row_, n_col), orientation)
+        oris_lower[:, : n_col // 2] += 90
+        oris = np.concatenate([oris_upper.flatten(), oris_lower.flatten()])
     
-    # Pre-compute Gabor patches 
-    gabor_array = visual.ElementArrayStim(
-        win=win,
-        units='deg',
-        nElements= 2 * n_rows * n_cols,
-        elementTex='sin',
-        elementMask='gauss',
-        xys=base_grid,
-        sizes=spacing,
-        sfs=frequency,
-        oris=oris,
-        contrs=mitchell_contrast
-    )
+        # Pre-compute Gabor patches 
+        gabor_array = visual.ElementArrayStim(
+            win=win,
+            units='deg',
+            nElements= 2 * n_row_ * n_col,
+            elementTex='sin',
+            elementMask='gauss',
+            xys=xys,
+            sizes=spacing,
+            sfs=frequency,
+            oris=oris,
+            contrs=mitchell_contrast
+        )
+        gabor_arrays[n_row_] = gabor_array
     SubjectResponse = keyboard.Keyboard(deviceName='SubjectResponse')
     DummyShape = visual.ShapeStim(
         win=win, name='DummyShape',
@@ -460,6 +486,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=0.0, depth=-2.0, interpolate=True)
+    keyMonkey = Monkey(
+        name='keyMonkey',
+        comp=SubjectResponse,
+    )
     
     # --- Initialize components for Routine "Wait" ---
     AnyButton = keyboard.Keyboard(deviceName='AnyButton')
@@ -470,6 +500,20 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
+    keyMonkey_2 = Monkey(
+        name='keyMonkey_2',
+        comp=AnyButton,
+    )
+    
+    # --- Initialize components for Routine "Break_3" ---
+    TakeABreakText = visual.TextStim(win=win, name='TakeABreakText',
+        text='Take a break!',
+        font='Arial',
+        pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=0.0);
+    WaitForEsc = keyboard.Keyboard(deviceName='WaitForEsc')
     
     # create some handy timers
     
@@ -499,6 +543,88 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         format='%Y-%m-%d %Hh%M.%S.%f %z', fractionalSecondDigits=6
     )
     
+    # --- Prepare to start Routine "Instruction" ---
+    # create an object to store info about Routine Instruction
+    Instruction = data.Routine(
+        name='Instruction',
+        components=[],
+    )
+    Instruction.status = NOT_STARTED
+    continueRoutine = True
+    # update component parameters for each repeat
+    # store start times for Instruction
+    Instruction.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+    Instruction.tStart = globalClock.getTime(format='float')
+    Instruction.status = STARTED
+    thisExp.addData('Instruction.started', Instruction.tStart)
+    Instruction.maxDuration = None
+    # keep track of which components have finished
+    InstructionComponents = Instruction.components
+    for thisComponent in Instruction.components:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    # reset timers
+    t = 0
+    _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+    frameN = -1
+    
+    # --- Run Routine "Instruction" ---
+    Instruction.forceEnded = routineForceEnded = not continueRoutine
+    while continueRoutine:
+        # get current time
+        t = routineTimer.getTime()
+        tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+        tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # check for quit (typically the Esc key)
+        if defaultKeyboard.getKeys(keyList=["escape"]):
+            thisExp.status = FINISHED
+        if thisExp.status == FINISHED or endExpNow:
+            endExperiment(thisExp, win=win)
+            return
+        # pause experiment here if requested
+        if thisExp.status == PAUSED:
+            pauseExperiment(
+                thisExp=thisExp, 
+                win=win, 
+                timers=[routineTimer, globalClock], 
+                currentRoutine=Instruction,
+            )
+            # skip the frame we paused on
+            continue
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            Instruction.forceEnded = routineForceEnded = True
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in Instruction.components:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # --- Ending Routine "Instruction" ---
+    for thisComponent in Instruction.components:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # store stop times for Instruction
+    Instruction.tStop = globalClock.getTime(format='float')
+    Instruction.tStopRefresh = tThisFlipGlobal
+    thisExp.addData('Instruction.stopped', Instruction.tStop)
+    thisExp.nextEntry()
+    # the Routine "Instruction" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    
     # set up handler to look after randomisation of conditions etc
     trials = data.TrialHandler2(
         name='trials',
@@ -506,7 +632,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         method='random', 
         extraInfo=expInfo, 
         originPath=-1, 
-        trialList=data.importConditions('displacement_conditions_temp.csv'), 
+        trialList=data.importConditions('conditions.csv'), 
         seed=seed, 
     )
     thisExp.addLoop(trials)  # add the loop to the experiment
@@ -664,17 +790,20 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine Stimulus
         Stimulus = data.Routine(
             name='Stimulus',
-            components=[SubjectResponse, DummyShape],
+            components=[SubjectResponse, DummyShape, keyMonkey],
         )
         Stimulus.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
         # Run 'Begin Routine' code from TextureBorder
+        # Decide for stimulus
+        gabor_array = gabor_arrays[n_row]
+        
         # Randomize locations
         jitter = np.random.uniform(-jitter_amount, jitter_amount, 
-                                   size=(2 * n_rows * n_cols, 2))
-        gabor_array.xys = base_grid + jitter
-        gabor_array.xys[:n_rows * n_cols] += spacing * displacement_rows 
+                                   size=(2 * n_row * n_col, 2))
+        gabor_array.xys = base_xys[n_row] + jitter
+        gabor_array.xys[:n_row * n_col] += spacing * displacement_rows 
         
         # Randomize phases
         # gabor_array.phases = np.random.uniform(0, 360, size=2 * n_rows * n_cols)
@@ -764,6 +893,36 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
+            # if keyMonkey is starting this frame...
+            if keyMonkey.status == NOT_STARTED and t >= 0.01-frameTolerance:
+                # keep track of start time/frame for later
+                keyMonkey.frameNStart = frameN  # exact frame index
+                keyMonkey.tStart = t  # local t and not account for scr refresh
+                keyMonkey.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(keyMonkey, 'tStartRefresh')  # time at next scr refresh
+                # update status
+                keyMonkey.status = STARTED
+                if PILOTING:
+                    # if piloting, keyMonkey will press its key
+                    keyMonkey.response = keyMonkey.comp.device.makeResponse(
+                        code='left',
+                        tDown=t,
+                    )
+            
+            # if keyMonkey is stopping this frame...
+            if keyMonkey.status == STARTED:
+                # is it time to stop? (based on global clock, using actual start)
+                if tThisFlipGlobal > keyMonkey.tStartRefresh + 0.02-frameTolerance:
+                    # keep track of stop time/frame for later
+                    keyMonkey.tStop = t  # not accounting for scr refresh
+                    keyMonkey.tStopRefresh = tThisFlipGlobal  # on global time
+                    keyMonkey.frameNStop = frameN  # exact frame index
+                    # update status
+                    keyMonkey.status = FINISHED
+                    if PILOTING:
+                        # if piloting, keyMonkey will release its key
+                        keyMonkey.response.duration = t - keyMonkey.response.tDown
+            
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
                 thisExp.status = FINISHED
@@ -817,7 +976,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine Wait
         Wait = data.Routine(
             name='Wait',
-            components=[AnyButton, PressAnyButtonText],
+            components=[AnyButton, PressAnyButtonText, keyMonkey_2],
         )
         Wait.status = NOT_STARTED
         continueRoutine = True
@@ -907,6 +1066,36 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
+            # if keyMonkey_2 is starting this frame...
+            if keyMonkey_2.status == NOT_STARTED and t >= 0.01-frameTolerance:
+                # keep track of start time/frame for later
+                keyMonkey_2.frameNStart = frameN  # exact frame index
+                keyMonkey_2.tStart = t  # local t and not account for scr refresh
+                keyMonkey_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(keyMonkey_2, 'tStartRefresh')  # time at next scr refresh
+                # update status
+                keyMonkey_2.status = STARTED
+                if PILOTING:
+                    # if piloting, keyMonkey_2 will press its key
+                    keyMonkey_2.response = keyMonkey_2.comp.device.makeResponse(
+                        code='space',
+                        tDown=t,
+                    )
+            
+            # if keyMonkey_2 is stopping this frame...
+            if keyMonkey_2.status == STARTED:
+                # is it time to stop? (based on global clock, using actual start)
+                if tThisFlipGlobal > keyMonkey_2.tStartRefresh + 0.02-frameTolerance:
+                    # keep track of stop time/frame for later
+                    keyMonkey_2.tStop = t  # not accounting for scr refresh
+                    keyMonkey_2.tStopRefresh = tThisFlipGlobal  # on global time
+                    keyMonkey_2.frameNStop = frameN  # exact frame index
+                    # update status
+                    keyMonkey_2.status = FINISHED
+                    if PILOTING:
+                        # if piloting, keyMonkey_2 will release its key
+                        keyMonkey_2.response.duration = t - keyMonkey_2.response.tDown
+            
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
                 thisExp.status = FINISHED
@@ -976,6 +1165,147 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     if thisSession is not None:
         # if running in a Session with a Liaison client, send data up to now
         thisSession.sendExperimentData()
+    
+    # --- Prepare to start Routine "Break_3" ---
+    # create an object to store info about Routine Break_3
+    Break_3 = data.Routine(
+        name='Break_3',
+        components=[TakeABreakText, WaitForEsc],
+    )
+    Break_3.status = NOT_STARTED
+    continueRoutine = True
+    # update component parameters for each repeat
+    # create starting attributes for WaitForEsc
+    WaitForEsc.keys = []
+    WaitForEsc.rt = []
+    _WaitForEsc_allKeys = []
+    # store start times for Break_3
+    Break_3.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+    Break_3.tStart = globalClock.getTime(format='float')
+    Break_3.status = STARTED
+    thisExp.addData('Break_3.started', Break_3.tStart)
+    Break_3.maxDuration = None
+    # keep track of which components have finished
+    Break_3Components = Break_3.components
+    for thisComponent in Break_3.components:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    # reset timers
+    t = 0
+    _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+    frameN = -1
+    
+    # --- Run Routine "Break_3" ---
+    Break_3.forceEnded = routineForceEnded = not continueRoutine
+    while continueRoutine:
+        # get current time
+        t = routineTimer.getTime()
+        tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+        tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *TakeABreakText* updates
+        
+        # if TakeABreakText is starting this frame...
+        if TakeABreakText.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            TakeABreakText.frameNStart = frameN  # exact frame index
+            TakeABreakText.tStart = t  # local t and not account for scr refresh
+            TakeABreakText.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(TakeABreakText, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'TakeABreakText.started')
+            # update status
+            TakeABreakText.status = STARTED
+            TakeABreakText.setAutoDraw(True)
+        
+        # if TakeABreakText is active this frame...
+        if TakeABreakText.status == STARTED:
+            # update params
+            pass
+        
+        # *WaitForEsc* updates
+        waitOnFlip = False
+        
+        # if WaitForEsc is starting this frame...
+        if WaitForEsc.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            WaitForEsc.frameNStart = frameN  # exact frame index
+            WaitForEsc.tStart = t  # local t and not account for scr refresh
+            WaitForEsc.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(WaitForEsc, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'WaitForEsc.started')
+            # update status
+            WaitForEsc.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(WaitForEsc.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(WaitForEsc.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if WaitForEsc.status == STARTED and not waitOnFlip:
+            theseKeys = WaitForEsc.getKeys(keyList=['esc'], ignoreKeys=["escape"], waitRelease=False)
+            _WaitForEsc_allKeys.extend(theseKeys)
+            if len(_WaitForEsc_allKeys):
+                WaitForEsc.keys = _WaitForEsc_allKeys[-1].name  # just the last key pressed
+                WaitForEsc.rt = _WaitForEsc_allKeys[-1].rt
+                WaitForEsc.duration = _WaitForEsc_allKeys[-1].duration
+                # a response ends the routine
+                continueRoutine = False
+        
+        # check for quit (typically the Esc key)
+        if defaultKeyboard.getKeys(keyList=["escape"]):
+            thisExp.status = FINISHED
+        if thisExp.status == FINISHED or endExpNow:
+            endExperiment(thisExp, win=win)
+            return
+        # pause experiment here if requested
+        if thisExp.status == PAUSED:
+            pauseExperiment(
+                thisExp=thisExp, 
+                win=win, 
+                timers=[routineTimer, globalClock], 
+                currentRoutine=Break_3,
+            )
+            # skip the frame we paused on
+            continue
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            Break_3.forceEnded = routineForceEnded = True
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in Break_3.components:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # --- Ending Routine "Break_3" ---
+    for thisComponent in Break_3.components:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # store stop times for Break_3
+    Break_3.tStop = globalClock.getTime(format='float')
+    Break_3.tStopRefresh = tThisFlipGlobal
+    thisExp.addData('Break_3.stopped', Break_3.tStop)
+    # check responses
+    if WaitForEsc.keys in ['', [], None]:  # No response was made
+        WaitForEsc.keys = None
+    thisExp.addData('WaitForEsc.keys',WaitForEsc.keys)
+    if WaitForEsc.keys != None:  # we had a response
+        thisExp.addData('WaitForEsc.rt', WaitForEsc.rt)
+        thisExp.addData('WaitForEsc.duration', WaitForEsc.duration)
+    thisExp.nextEntry()
+    # the Routine "Break_3" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     
     # mark experiment as finished
     endExperiment(thisExp, win=win)

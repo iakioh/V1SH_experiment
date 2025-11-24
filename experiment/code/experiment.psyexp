@@ -1,0 +1,639 @@
+﻿<?xml version="1.0" ?>
+<PsychoPy2experiment encoding="utf-8" version="2025.1.1">
+  <Settings>
+    <Param val="ptb" valType="str" updates="None" name="Audio lib"/>
+    <Param val="" valType="str" updates="None" name="Completed URL"/>
+    <Param val="auto" valType="str" updates="None" name="Data file delimiter"/>
+    <Param val="u'../../data/%s/ID%sS%s_%s_%s_%s' % (expInfo['save_in'], expInfo['ID'], expInfo['session'], expInfo['surname'], expInfo['first_name'], expInfo['date'])" valType="code" updates="None" name="Data filename"/>
+    <Param val="True" valType="bool" updates="None" name="Enable Escape"/>
+    <Param val="Thank you for your patience." valType="str" updates="None" name="End Message"/>
+    <Param val="{'ID': '001', 'first_name': 'Kai', 'surname': 'Rothe', 'age': '25', 'gender': 'male', 'session': '01', 'save_in': 'personal'}" valType="code" updates="None" name="Experiment info"/>
+    <Param val="True" valType="bool" updates="None" name="Force stereo"/>
+    <Param val="True" valType="bool" updates="None" name="Full-screen window"/>
+    <Param val="" valType="str" updates="None" name="HTML path"/>
+    <Param val="" valType="str" updates="None" name="Incomplete URL"/>
+    <Param val="testMonitor" valType="str" updates="None" name="Monitor"/>
+    <Param val="[]" valType="list" updates="None" name="Resources"/>
+    <Param val="False" valType="bool" updates="None" name="Save csv file"/>
+    <Param val="True" valType="bool" updates="None" name="Save excel file"/>
+    <Param val="False" valType="bool" updates="None" name="Save hdf5 file"/>
+    <Param val="True" valType="bool" updates="None" name="Save log file"/>
+    <Param val="True" valType="bool" updates="None" name="Save psydat file"/>
+    <Param val="True" valType="bool" updates="None" name="Save wide csv file"/>
+    <Param val="1" valType="num" updates="None" name="Screen"/>
+    <Param val="True" valType="bool" updates="None" name="Show info dlg"/>
+    <Param val="False" valType="bool" updates="None" name="Show mouse"/>
+    <Param val="deg" valType="str" updates="None" name="Units"/>
+    <Param val="" valType="str" updates="None" name="Use version"/>
+    <Param val="[1536, 864]" valType="list" updates="None" name="Window size (pixels)"/>
+    <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+    <Param val="" valType="str" updates="None" name="backgroundImg"/>
+    <Param val="avg" valType="str" updates="None" name="blendMode"/>
+    <Param val="float" valType="str" updates="None" name="clockFormat"/>
+    <Param val="{'thisRow.t': 'priority.CRITICAL', 'expName': 'priority.LOW'}" valType="dict" updates="None" name="colPriority"/>
+    <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+    <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+    <Param val="warning" valType="code" updates="None" name="consoleLoggingLevel"/>
+    <Param val="default" valType="str" updates="None" name="ecSampleRate"/>
+    <Param val="100.1.1.1" valType="str" updates="None" name="elAddress"/>
+    <Param val="FILTER_LEVEL_2" valType="str" updates="None" name="elDataFiltering"/>
+    <Param val="FILTER_LEVEL_OFF" valType="str" updates="None" name="elLiveFiltering"/>
+    <Param val="EYELINK 1000 DESKTOP" valType="str" updates="None" name="elModel"/>
+    <Param val="ELLIPSE_FIT" valType="str" updates="None" name="elPupilAlgorithm"/>
+    <Param val="PUPIL_AREA" valType="str" updates="None" name="elPupilMeasure"/>
+    <Param val="1000" valType="num" updates="None" name="elSampleRate"/>
+    <Param val="False" valType="bool" updates="None" name="elSimMode"/>
+    <Param val="RIGHT_EYE" valType="str" updates="None" name="elTrackEyes"/>
+    <Param val="PUPIL_CR_TRACKING" valType="str" updates="None" name="elTrackingMode"/>
+    <Param val="v0" valType="str" updates="None" name="expName"/>
+    <Param val="" valType="str" updates="None" name="expVersion"/>
+    <Param val="on Sync" valType="str" updates="None" name="exportHTML"/>
+    <Param val="None" valType="str" updates="None" name="eyetracker"/>
+    <Param val="" valType="code" updates="None" name="frameRate"/>
+    <Param val="Attempting to measure frame rate of screen, please wait..." valType="str" updates="None" name="frameRateMsg"/>
+    <Param val="127.0.0.1" valType="str" updates="None" name="gpAddress"/>
+    <Param val="4242" valType="num" updates="None" name="gpPort"/>
+    <Param val="PsychToolbox" valType="str" updates="None" name="keyboardBackend"/>
+    <Param val="info" valType="code" updates="None" name="logging level"/>
+    <Param val="True" valType="bool" updates="None" name="measureFrameRate"/>
+    <Param val="('MIDDLE_BUTTON',)" valType="list" updates="None" name="mgBlink"/>
+    <Param val="CONTINUOUS" valType="str" updates="None" name="mgMove"/>
+    <Param val="0.5" valType="num" updates="None" name="mgSaccade"/>
+    <Param val="neon.local" valType="str" updates="None" name="plCompanionAddress"/>
+    <Param val="8080" valType="num" updates="None" name="plCompanionPort"/>
+    <Param val="0.6" valType="num" updates="None" name="plConfidenceThreshold"/>
+    <Param val="" valType="str" updates="None" name="plPupilCaptureRecordingLocation"/>
+    <Param val="127.0.0.1" valType="str" updates="None" name="plPupilRemoteAddress"/>
+    <Param val="50020" valType="num" updates="None" name="plPupilRemotePort"/>
+    <Param val="1000" valType="num" updates="None" name="plPupilRemoteTimeoutMs"/>
+    <Param val="False" valType="bool" updates="None" name="plPupillometryOnly"/>
+    <Param val="psychopy_iohub_surface" valType="str" updates="None" name="plSurfaceName"/>
+    <Param val="0" valType="code" updates="None" name="runMode"/>
+    <Param val="True" valType="bool" updates="None" name="rush"/>
+    <Param val="time" valType="str" updates="None" name="sortColumns"/>
+    <Param val="" valType="str" updates="None" name="tbLicenseFile"/>
+    <Param val="" valType="str" updates="None" name="tbModel"/>
+    <Param val="60" valType="num" updates="None" name="tbSampleRate"/>
+    <Param val="60" valType="str" updates="None" name="tbSamplingRate"/>
+    <Param val="" valType="str" updates="None" name="tbSerialNo"/>
+    <Param val="BINOCULAR" valType="str" updates="None" name="tbTrackEyes"/>
+    <Param val="pyglet" valType="str" updates="None" name="winBackend"/>
+  </Settings>
+  <Routines>
+    <Routine name="Preparation">
+      <RoutineSettingsComponent name="Preparation" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="Preparation" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <CodeComponent name="GetExperimentalInfo" plugin="None">
+        <Param val="from psychopy import visual&amp;#10;import numpy as np&amp;#10;import yaml&amp;#10;import os&amp;#10;import math&amp;#10;import pandas as pd&amp;#10;import itertools&amp;#10;from psychopy import gui&amp;#10;&amp;#10;# Load or calculate all relevant information for the experiment&amp;#10;ExpInfo_path = os.path.join(os.path.dirname(__file__), '../ExpInfo.yaml')&amp;#10;with open(ExpInfo_path, 'r') as f:&amp;#10;    ExpInfo = yaml.safe_load(f)&amp;#10;&amp;#10;StimInfo = ExpInfo[&quot;Stimulus&quot;]&amp;#10;&amp;#10;# Set parameters&amp;#10;nReps_test = ExpInfo[&quot;Procedure&amp;Conditions&quot;][&quot;NumberOfRepetitions&quot;]&amp;#10;nReps_train = ExpInfo[&quot;Procedure&amp;Conditions&quot;][&quot;NumberOfPracticeRepetitions&quot;]&amp;#10;seed = ExpInfo[&quot;Procedure&amp;Conditions&quot;][&quot;RandomSeed&quot;]&amp;#10;&amp;#10;frequency = StimInfo[&quot;GaborPatch&quot;][&quot;SpatialFrequency_cpd&quot;] # cycles per degree&amp;#10;mitchell_contrast = StimInfo[&quot;GaborPatch&quot;][&quot;MitchellContrast&quot;] &amp;#10;sigma = StimInfo[&quot;GaborPatch&quot;][&quot;Sigma_degrees&quot;] # degrees&amp;#10;spacing = StimInfo[&quot;GaborPatch&quot;][&quot;PatchSize_sigma&quot;] * sigma  # degrees&amp;#10;jitter_amount = StimInfo[&quot;Jitter&quot;][&quot;Range_sigma&quot;] * sigma  # max jitter in degrees&amp;#10;&amp;#10;n_rows = StimInfo[&quot;Grid&quot;][&quot;Rows&quot;]&amp;#10;n_col = StimInfo[&quot;Grid&quot;][&quot;Columns&quot;]&amp;#10;vertical_seperation = StimInfo[&quot;VerticalSeperation_degrees&quot;]&amp;#10;&amp;#10;fixation_shape = StimInfo[&quot;Fixation&quot;][&quot;Shape&quot;]&amp;#10;fixation_duration = StimInfo[&quot;Fixation&quot;][&quot;Duration_s&quot;] # seconds&amp;#10;fixation_diameter = StimInfo[&quot;Fixation&quot;][&quot;Diameter_degrees&quot;] # degrees&amp;#10;&amp;#10;# Hardcoded parameters&amp;#10;assert StimInfo[&quot;Fixation&quot;][&quot;Color&quot;] == &quot;white&quot;, &quot;Fixation stimulus  should be set to 'white'.&quot;" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="GetExperimentalInfo" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <CodeComponent name="GetTrialConditionSequence" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="# Create and save conditions sequence&amp;#10;def get_frames_from_seconds(duration_s):&amp;#10;    refresh_rate = win.getActualFrameRate() # Hz&amp;#10;    return round(refresh_rate * duration_s)&amp;#10;&amp;#10;# Pre-compute orientation and timing&amp;#10;session_index = int(expInfo[&quot;session&quot;]) - 1 # starts with &quot;001&quot;&amp;#10;if len(StimInfo[&quot;GaborPatch&quot;][&quot;Orientation_degrees&quot;]) &lt;= session_index:&amp;#10;    raise TypeError(&quot;Number of orientations &lt;= session number.&quot;)&amp;#10;else:&amp;#10;    orientation = StimInfo[&quot;GaborPatch&quot;][&quot;Orientation_degrees&quot;][session_index]&amp;#10;&amp;#10;stimulus_duration = StimInfo[&quot;GaborPatch&quot;][&quot;Duration_s&quot;]&amp;#10;stimulus_frames = get_frames_from_seconds(stimulus_duration)&amp;#10;&amp;#10;# training and testing trials&amp;#10;conditions = list(itertools.product(n_rows, StimInfo[&quot;HorizontalDisplacement_rows&quot;]))&amp;#10;conditions_df = pd.DataFrame(conditions, columns=['n_row', 'displacement_rows'])&amp;#10;conditions_df['session'] = session_index &amp;#10;conditions_df['orientation_degrees'] = orientation&amp;#10;conditions_df[&quot;duration_frames&quot;] = stimulus_frames&amp;#10;conditions_df[&quot;duration_s&quot;] = stimulus_duration&amp;#10;conditions_df[&quot;state&quot;] = &quot;test&quot;&amp;#10;conditions_df.to_csv('conditions_temp_test.csv', index=False)&amp;#10;conditions_df[&quot;state&quot;] = &quot;train&quot; # training is test trials with less repetitions&amp;#10;conditions_df.to_csv('conditions_temp_train.csv', index=False)&amp;#10;&amp;#10;# instruction trials&amp;#10;instructions_filepath = &quot;../instructions.csv&quot; # hardcoded here&amp;#10;instruction_conditions_df = pd.read_csv(instructions_filepath) &amp;#10;instruction_conditions_df['session'] = session_index &amp;#10;instruction_conditions_df['orientation_degrees'] = orientation&amp;#10;instruction_conditions_df[&quot;duration_frames&quot;] = instruction_conditions_df[&quot;duration_s&quot;].apply(get_frames_from_seconds)&amp;#10;instruction_conditions_df[&quot;state&quot;] = &quot;instruct&quot;&amp;#10;instruction_conditions_df.to_csv('conditions_temp_instruct.csv', index=False)" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="GetTrialConditionSequence" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="Fixation">
+      <RoutineSettingsComponent name="Fixation" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="Fixation" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="0.6" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <PolygonComponent name="FixationShape" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="white" valType="color" updates="constant" name="fillColor"/>
+        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
+        <Param val="white" valType="color" updates="constant" name="lineColor"/>
+        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
+        <Param val="4" valType="int" updates="constant" name="nVertices"/>
+        <Param val="FixationShape" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="circle" valType="str" updates="None" name="shape"/>
+        <Param val="(fixation_diameter, fixation_diameter)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="fixation_duration" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="list" updates="constant" name="vertices"/>
+      </PolygonComponent>
+    </Routine>
+    <Routine name="Stimulus">
+      <RoutineSettingsComponent name="Stimulus" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="Stimulus" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <CodeComponent name="DisplayStimulus" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="import {visual} from 'psychopy';&amp;#10;import * as np from 'numpy';&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="# Pre-Compute stimuli&amp;#10;base_xys = {}&amp;#10;gabor_arrays = {}&amp;#10;for n_row_ in n_rows: # name n_row_ to avoid overwriting trial loop n_row condition&amp;#10;    # Pre-compute grid&amp;#10;    xs = np.linspace(-spacing * (n_col-1) / 2, spacing * (n_col-1) / 2, n_col)&amp;#10;    ys = np.linspace(0.0, spacing*(n_row_-1), n_row_)&amp;#10;    xys_upper = np.array([[x, y + vertical_seperation / 2] for y in ys for x in xs])&amp;#10;    xys_lower = np.array([[x, - y - vertical_seperation / 2] for y in ys for x in xs])&amp;#10;    xys = np.concatenate([xys_upper, xys_lower], axis = 0)&amp;#10;    base_xys[n_row_] = xys&amp;#10;&amp;#10;    # Pre-compute orientations&amp;#10;    oris_upper = np.full((n_row_, n_col), orientation)&amp;#10;    oris_upper[:, n_col // 2 :] += 90&amp;#10;    oris_lower = np.full((n_row_, n_col), orientation)&amp;#10;    oris_lower[:, : n_col // 2] += 90&amp;#10;    oris = np.concatenate([oris_upper.flatten(), oris_lower.flatten()])&amp;#10;&amp;#10;    # Pre-compute Gabor patches &amp;#10;    gabor_array = visual.ElementArrayStim(&amp;#10;        win=win,&amp;#10;        units='deg',&amp;#10;        nElements= 2 * n_row_ * n_col,&amp;#10;        elementTex='sin',&amp;#10;        elementMask='gauss',&amp;#10;        xys=xys,&amp;#10;        sizes=spacing,&amp;#10;        sfs=frequency,&amp;#10;        oris=oris,&amp;#10;        contrs=mitchell_contrast&amp;#10;    )&amp;#10;    gabor_arrays[n_row_] = gabor_array" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="/* Syntax Error: Fix Python code */" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="# Decide for stimulus and duration&amp;#10;gabor_array = gabor_arrays[n_row]&amp;#10;&amp;#10;# Randomize locations&amp;#10;jitter = np.random.uniform(-jitter_amount, jitter_amount, &amp;#10;                           size=(2 * n_row * n_col, 2))&amp;#10;gabor_array.xys = base_xys[n_row] + jitter&amp;#10;gabor_array.xys[:n_row * n_col, 0] += spacing * displacement_rows &amp;#10;&amp;#10;# Randomize phases&amp;#10;# gabor_array.phases = np.random.uniform(0, 360, size=2 * n_rows * n_cols)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="if frameN &lt; duration_frames:&amp;#10;    gabor_array.draw()" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="DisplayStimulus" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <PolygonComponent name="DisplayStimulusDummy" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="0." valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="white" valType="color" updates="constant" name="fillColor"/>
+        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
+        <Param val="white" valType="color" updates="constant" name="lineColor"/>
+        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
+        <Param val="4" valType="int" updates="constant" name="nVertices"/>
+        <Param val="DisplayStimulusDummy" valType="code" updates="None" name="name"/>
+        <Param val="0." valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="circle" valType="str" updates="None" name="shape"/>
+        <Param val="(0.5, 0.5)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="list" updates="constant" name="vertices"/>
+      </PolygonComponent>
+      <KeyboardComponent name="GetResponse" plugin="None">
+        <Param val="'left','right'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="" valType="str" updates="constant" name="correctAns"/>
+        <Param val="" valType="str" updates="None" name="deviceLabel"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="constant" name="discard previous"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
+        <Param val="GetResponse" valType="code" updates="None" name="name"/>
+        <Param val="press" valType="str" updates="constant" name="registerOn"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="last key" valType="str" updates="constant" name="store"/>
+        <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+      </KeyboardComponent>
+      <KeyboardMonkeyComponent name="ReplayResponse" plugin="psychopy-monkeys">
+        <Param val="GetResponse" valType="code" updates="None" name="comp"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="ReplayResponse" valType="code" updates="None" name="name"/>
+        <Param val="left" valType="str" updates="None" name="pressKey"/>
+        <Param val="both" valType="str" updates="None" name="pressMode"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="30" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="35" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
+      </KeyboardMonkeyComponent>
+      <PolygonComponent name="Mask" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="True" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="0, 0, 0" valType="color" updates="constant" name="fillColor"/>
+        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
+        <Param val="0, 0, 0" valType="color" updates="constant" name="lineColor"/>
+        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
+        <Param val="4" valType="int" updates="constant" name="nVertices"/>
+        <Param val="Mask" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="rectangle" valType="str" updates="None" name="shape"/>
+        <Param val="(15, 10)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="frame N" valType="str" updates="None" name="startType"/>
+        <Param val="duration_frames" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="list" updates="constant" name="vertices"/>
+      </PolygonComponent>
+    </Routine>
+    <Routine name="Wait">
+      <RoutineSettingsComponent name="Wait" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="Wait" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <KeyboardComponent name="AnyButton" plugin="None">
+        <Param val="None" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="" valType="str" updates="constant" name="correctAns"/>
+        <Param val="" valType="str" updates="None" name="deviceLabel"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="constant" name="discard previous"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
+        <Param val="AnyButton" valType="code" updates="None" name="name"/>
+        <Param val="press" valType="str" updates="constant" name="registerOn"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0." valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="last key" valType="str" updates="constant" name="store"/>
+        <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+      </KeyboardComponent>
+      <TextComponent name="PressAnyButtonText" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="1.5" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="PressAnyButtonText" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Press any button." valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <KeyboardMonkeyComponent name="ReplayAnyButton" plugin="psychopy-monkeys">
+        <Param val="AnyButton" valType="code" updates="None" name="comp"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="ReplayAnyButton" valType="code" updates="None" name="name"/>
+        <Param val="space" valType="str" updates="None" name="pressKey"/>
+        <Param val="both" valType="str" updates="None" name="pressMode"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="5" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="6" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="syncScreenRefresh"/>
+      </KeyboardMonkeyComponent>
+    </Routine>
+    <Routine name="Dialogue_1">
+      <RoutineSettingsComponent name="Dialogue_1" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="Dialogue_1" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <CodeComponent name="DisplayDialogue_1" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="def displayDialogueToRepeat(loop):&amp;#10;    dlg = gui.DlgFromDict({'Repeat practice?': ['No', 'Yes']}, title='Continue?')&amp;#10;    if not dlg.OK or dlg.dictionary['Repeat practice?'] == 'No':&amp;#10;        loop.finished = True" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="displayDialogueToRepeat(instruction)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="DisplayDialogue_1" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="Dialogue_2">
+      <RoutineSettingsComponent name="Dialogue_2" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="Dialogue_2" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <CodeComponent name="DisplayDialogue_2" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="displayDialogueToRepeat(training)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="DisplayDialogue_2" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="End">
+      <RoutineSettingsComponent name="End" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="End" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <TextComponent name="TakeABreakText" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="1.0" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="TakeABreakText" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Take a break!" valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <KeyboardComponent name="WaitForEsc" plugin="None">
+        <Param val="'esc'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="" valType="str" updates="constant" name="correctAns"/>
+        <Param val="" valType="str" updates="None" name="deviceLabel"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="constant" name="discard previous"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
+        <Param val="WaitForEsc" valType="code" updates="None" name="name"/>
+        <Param val="press" valType="str" updates="constant" name="registerOn"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="last key" valType="str" updates="constant" name="store"/>
+        <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+      </KeyboardComponent>
+      <CodeComponent name="SaveData" plugin="None">
+        <Param val="import atexit&amp;#10;import shutil&amp;#10;import os&amp;#10;from datetime import datetime" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="def save_experiment_files_robust():&amp;#10;    &quot;&quot;&quot;Save experiment files using PsychoPy's auto-generated filename&quot;&quot;&quot;&amp;#10;    try:&amp;#10;        # 'filename' is auto-generated by Builder from Experiment Settings&amp;#10;        # It's already the full path without extension&amp;#10;        # E.g., 'data/participant001_myExperiment_2025-11-20_1435'&amp;#10;        &amp;#10;        dataDir = os.path.dirname(filename)&amp;#10;        baseName = os.path.basename(filename)&amp;#10;        &amp;#10;        # remaining files / trials automatically saved by Builder on-line&amp;#10;        files_to_save = [&amp;#10;            (&quot;&quot;, expName, '.psyexp'),&amp;#10;            (&quot;..&quot;, &quot;instructions&quot;, '.csv',),&amp;#10;            (&quot;..&quot;, &quot;ExpInfo&quot;, '.yaml')&amp;#10;        ]&amp;#10;        &amp;#10;        for relative_path, rename, ext in files_to_save:&amp;#10;            filepath = os.path.join(relative_path, rename, ext)&amp;#10;            if os.path.exists(filepath):&amp;#10;                # Get modification date&amp;#10;                modDate = datetime.fromtimestamp(&amp;#10;                    os.path.getmtime(filepath)&amp;#10;                ).strftime('%Y-%m-%d_%H%M')&amp;#10;                &amp;#10;                # Create destination filename&amp;#10;                destFilename = f&quot;{baseName}_{rename}_mod-{modDate}{ext}&quot;&amp;#10;                destPath = os.path.join(dataDir, destFilename)&amp;#10;                &amp;#10;                shutil.copy2(filepath, destPath)&amp;#10;                print(f&quot;Saved: {destFilename}&quot;)&amp;#10;                &amp;#10;    except Exception as e:&amp;#10;        logging.error(f'Could not save experiment files: {e}')&amp;#10;&amp;#10;# Register with atexit&amp;#10;atexit.register(save_experiment_files_robust)&amp;#10;&amp;#10;# Save immediately at start&amp;#10;save_experiment_files_robust()" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="SaveData" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <CodeComponent name="QASession" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="QASession" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+    </Routine>
+  </Routines>
+  <Flow>
+    <Routine name="Preparation"/>
+    <LoopInitiator loopType="TrialHandler" name="instruction">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="False" valType="bool"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
+      <Param name="nReps" updates="None" val="999" valType="num"/>
+      <Param name="name" updates="None" val="instruction" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="Wait"/>
+    <LoopInitiator loopType="TrialHandler" name="instruction_trials">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[{'n_row': 12, 'displacement_rows': 2, 'duration_s': 120}, {'n_row': 12, 'displacement_rows': -2, 'duration_s': 120}, {'n_row': 1, 'displacement_rows': 2, 'duration_s': 120}, {'n_row': 1, 'displacement_rows': -2, 'duration_s': 120}, {'n_row': 12, 'displacement_rows': -0.5, 'duration_s': 120}, {'n_row': 1, 'displacement_rows': 0.5, 'duration_s': 120}, {'n_row': 12, 'displacement_rows': -1, 'duration_s': 10}, {'n_row': 1, 'displacement_rows': 0.5, 'duration_s': 10}, {'n_row': 1, 'displacement_rows': 1, 'duration_s': 1}, {'n_row': 12, 'displacement_rows': -0.5, 'duration_s': 1}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="conditions_temp_instruct.csv" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="num"/>
+      <Param name="name" updates="None" val="instruction_trials" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="Fixation"/>
+    <Routine name="Stimulus"/>
+    <Routine name="Wait"/>
+    <LoopTerminator name="instruction_trials"/>
+    <Routine name="Dialogue_1"/>
+    <LoopTerminator name="instruction"/>
+    <Routine name="Wait"/>
+    <LoopInitiator loopType="TrialHandler" name="training">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="False" valType="bool"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
+      <Param name="nReps" updates="None" val="999" valType="num"/>
+      <Param name="name" updates="None" val="training" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="Wait"/>
+    <LoopInitiator loopType="TrialHandler" name="training_trials">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="conditions_temp_train.csv" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="nReps_train" valType="num"/>
+      <Param name="name" updates="None" val="training_trials" valType="code"/>
+      <Param name="random seed" updates="None" val="seed + 1" valType="code"/>
+    </LoopInitiator>
+    <Routine name="Fixation"/>
+    <Routine name="Stimulus"/>
+    <Routine name="Wait"/>
+    <LoopTerminator name="training_trials"/>
+    <Routine name="Dialogue_2"/>
+    <LoopTerminator name="training"/>
+    <Routine name="Wait"/>
+    <LoopInitiator loopType="TrialHandler" name="testing_trials">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(0)), ('orientation_degrees', np.int64(0))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(1)), ('orientation_degrees', np.int64(15))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(1)), ('orientation_degrees', np.int64(15))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(1)), ('orientation_degrees', np.int64(15))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(1)), ('orientation_degrees', np.int64(15))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(1)), ('orientation_degrees', np.int64(15))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(1)), ('orientation_degrees', np.int64(15))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(1)), ('orientation_degrees', np.int64(15))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(1)), ('orientation_degrees', np.int64(15))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(1)), ('orientation_degrees', np.int64(15))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(1)), ('orientation_degrees', np.int64(15))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(3)), ('orientation_degrees', np.int64(45))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(3)), ('orientation_degrees', np.int64(45))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(3)), ('orientation_degrees', np.int64(45))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(3)), ('orientation_degrees', np.int64(45))]), OrderedDict([('n_row', np.int64(1)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(3)), ('orientation_degrees', np.int64(45))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(1.0)), ('session', np.int64(3)), ('orientation_degrees', np.int64(45))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.5)), ('session', np.int64(3)), ('orientation_degrees', np.int64(45))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(0.0)), ('session', np.int64(3)), ('orientation_degrees', np.int64(45))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-0.5)), ('session', np.int64(3)), ('orientation_degrees', np.int64(45))]), OrderedDict([('n_row', np.int64(12)), ('displacement_rows', np.float64(-1.0)), ('session', np.int64(3)), ('orientation_degrees', np.int64(45))])]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="conditions_temp_test.csv" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="nReps_test" valType="num"/>
+      <Param name="name" updates="None" val="testing_trials" valType="code"/>
+      <Param name="random seed" updates="None" val="seed" valType="code"/>
+    </LoopInitiator>
+    <Routine name="Fixation"/>
+    <Routine name="Stimulus"/>
+    <Routine name="Wait"/>
+    <LoopTerminator name="testing_trials"/>
+    <Routine name="End"/>
+  </Flow>
+</PsychoPy2experiment>

@@ -1,1 +1,5 @@
+Documentation of any design choices different to Popper, 2003
+
+Changes: 
 - I don't show the Gabor patch stimulus exactly for the given time, but only for a certain amount of frames. I need to store the exact timing, but haven't yet. In general, it is floor(refresh_rate * duration)
+- from the paper it is not apparant, where the single rows were shown. I decided to show them at the center, since that's where the participant looks according to previous fixation.

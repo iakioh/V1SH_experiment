@@ -15,7 +15,7 @@ Stimulus:
     Duration_s: 0.5
     Shape: "circle"
     Color: "white"
-    Diamater_degrees: 0.1
+    Diameter_degrees: 0.1
   GaborPatch:
     Duration_s: 0.15
     MitchellContrast: 0.5
@@ -35,8 +35,6 @@ Stimulus:
       - 1
       - 12
     Columns: 48
-    Height_degrees: 2.64
-    Length_degrees: 10.56
   Jitter:
     Type: "Uniform"
     Range_sigma: 1.2
@@ -49,15 +47,7 @@ Stimulus:
     - -1.0
 
 Procedure&Conditions:
-  BlockByOrientation: True
-  NumberOfTrialsPerOffset: 20
-  RandomTrialOrderPerBlock: True
-  Response:
-    Type: "Forced-choice task"
-    Options: 
-      - "Left"
-      - "Right"
-
-Instructions:
-  - "Participants were instructed to maintain fixation throughout the trial."
+  NumberOfRepetitions: 20
+  NumberOfPracticeRepetitions: 1
+  RandomSeed: 42
   
