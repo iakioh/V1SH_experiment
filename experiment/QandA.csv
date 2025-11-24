@@ -1,0 +1,5 @@
+index,itemText,type
+0,Do you have any general comments?,free text
+1,How difficult or easy was it? Subjective accuracy (%)?,free text
+2,Did you have any strategy to solve the task?,free text
+3,Did you notice anything?,free text

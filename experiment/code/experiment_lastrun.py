@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on November 20, 2025, at 19:53
+    on November 24, 2025, at 18:45
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -10,6 +10,10 @@ If you publish work using this script the most relevant publication is:
         https://doi.org/10.3758/s13428-018-01193-y
 
 """
+
+import psychopy
+psychopy.useVersion('2025.1.1')
+
 
 # --- Import packages ---
 from psychopy import locale_setup
@@ -35,23 +39,24 @@ from psychopy.hardware import keyboard
 from psychopy_monkeys import Monkey
 
 # Run 'Before Experiment' code from GetExperimentalInfo
-from psychopy import visual
-import numpy as np
+# from psychopy import visual, gui, logging
+# import numpy as np
 import yaml
-import os
+# import os
 import math
 import pandas as pd
 import itertools
-from psychopy import gui
+import atexit
+import shutil
+from datetime import datetime
 
-# Load or calculate all relevant information for the experiment
+# Parameters loaded / calculated from file
 ExpInfo_path = os.path.join(os.path.dirname(__file__), '../ExpInfo.yaml')
 with open(ExpInfo_path, 'r') as f:
     ExpInfo = yaml.safe_load(f)
 
 StimInfo = ExpInfo["Stimulus"]
 
-# Set parameters
 nReps_test = ExpInfo["Procedure&Conditions"]["NumberOfRepetitions"]
 nReps_train = ExpInfo["Procedure&Conditions"]["NumberOfPracticeRepetitions"]
 seed = ExpInfo["Procedure&Conditions"]["RandomSeed"]
@@ -70,13 +75,9 @@ fixation_shape = StimInfo["Fixation"]["Shape"]
 fixation_duration = StimInfo["Fixation"]["Duration_s"] # seconds
 fixation_diameter = StimInfo["Fixation"]["Diameter_degrees"] # degrees
 
-# Hardcoded parameters
+# Ensure hardcoded parameters are correct
 assert StimInfo["Fixation"]["Color"] == "white", "Fixation stimulus  should be set to 'white'."
-# Run 'Before Experiment' code from SaveData
-import atexit
-import shutil
-import os
-from datetime import datetime
+assert StimInfo["Jitter"]["Type"] == "uniform", "Spatial jitter distribution should be set to 'uniform'."
 # --- Setup global variables (available in all functions) ---
 # create a device manager to handle hardware (keyboards, mice, mirophones, speakers, etc.)
 deviceManager = hardware.DeviceManager()
@@ -84,7 +85,7 @@ deviceManager = hardware.DeviceManager()
 _thisDir = os.path.dirname(os.path.abspath(__file__))
 # store info about the experiment session
 psychopyVersion = '2025.1.1'
-expName = 'v0'  # from the Builder filename that created this script
+expName = 'experiment'  # from the Builder filename that created this script
 expVersion = ''
 # a list of functions to run when the experiment ends (starts off blank)
 runAtExit = []
@@ -97,6 +98,9 @@ expInfo = {
     'gender': 'male',
     'session': '01',
     'save_in': 'personal',
+    'viewing_distance_cm': '100',
+    'mean_luminance_cdpm2': '40',
+    'monitor_type': 'testMonitor',
     'date|hid': data.getDateStr(),
     'expName|hid': expName,
     'expVersion|hid': expVersion,
@@ -169,7 +173,7 @@ def setupData(expInfo, dataDir=None):
     # data file name stem = absolute path + name; later add .psyexp, .csv, .log, etc
     if dataDir is None:
         dataDir = _thisDir
-    filename = u'../../data/%s/ID%sS%s_%s_%s_%s' % (expInfo['save_in'], expInfo['ID'], expInfo['session'], expInfo['surname'], expInfo['first_name'], expInfo['date'])
+    filename = u'../../data/%s/ID%sS%s_%s_%s_%s/ID%sS%s_%s_%s_%s' % (expInfo['save_in'], expInfo['ID'], expInfo['session'], expInfo['surname'], expInfo['first_name'], expInfo['date'], expInfo['ID'], expInfo['session'], expInfo['surname'], expInfo['first_name'], expInfo['date'])
     # make sure filename is relative to dataDir
     if os.path.isabs(filename):
         dataDir = os.path.commonprefix([dataDir, filename])
@@ -247,11 +251,11 @@ def setupWindow(expInfo=None, win=None):
         # if not given a window to setup, make one
         win = visual.Window(
             size=_winSize, fullscr=_fullScr, screen=0,
-            winType='pyglet', allowGUI=False, allowStencil=False,
+            winType='pyglet', allowGUI=True, allowStencil=False,
             monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
             blendMode='avg', useFBO=True,
-            units='deg',
+            units='height',
             checkTiming=False  # we're going to do this ourselves in a moment
         )
     else:
@@ -260,7 +264,7 @@ def setupWindow(expInfo=None, win=None):
         win.colorSpace = 'rgb'
         win.backgroundImage = ''
         win.backgroundFit = 'none'
-        win.units = 'deg'
+        win.units = 'height'
     if expInfo is not None:
         # get/measure frame rate if not already in expInfo
         if win._monitorFrameRate is None:
@@ -321,11 +325,17 @@ def setupDevices(expInfo, thisExp, win):
             deviceClass='keyboard',
             deviceName='GetResponse',
         )
-    if deviceManager.getDevice('WaitForEsc') is None:
-        # initialise WaitForEsc
-        WaitForEsc = deviceManager.addDevice(
+    if deviceManager.getDevice('AnyButton_2') is None:
+        # initialise AnyButton_2
+        AnyButton_2 = deviceManager.addDevice(
             deviceClass='keyboard',
-            deviceName='WaitForEsc',
+            deviceName='AnyButton_2',
+        )
+    if deviceManager.getDevice('CompleteFormButton') is None:
+        # initialise CompleteFormButton
+        CompleteFormButton = deviceManager.addDevice(
+            deviceClass='keyboard',
+            deviceName='CompleteFormButton',
         )
     # return True if completed successfully
     return True
@@ -438,6 +448,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # Start Code - component code to be run after the window creation
     
     # --- Initialize components for Routine "Preparation" ---
+    # Run 'Begin Experiment' code from GetExperimentalInfo
+    # Parameters by hand (dialog box)
+    assert expInfo['monitor_type'] == win.monitor.name, f"Monitor setting (monitor type) incorrect: {win.monitor.name} (true) != {expInfo['monitor_type']} (given)."
+    assert float(expInfo['viewing_distance_cm']) == win.monitor.getDistance(), f"Monitor setting (viewing distance) incorrect:  {win.monitor.getDistance()} (true) != {float(expInfo['viewing_distance_cm'])} (given)."
     # Run 'Begin Experiment' code from GetTrialConditionSequence
     # Create and save conditions sequence
     def get_frames_from_seconds(duration_s):
@@ -477,10 +491,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Wait" ---
     AnyButton = keyboard.Keyboard(deviceName='AnyButton')
-    PressAnyButtonText = visual.TextStim(win=win, name='PressAnyButtonText',
-        text='Press any button.',
+    PressAnyButtonForNextTrialText = visual.TextStim(win=win, name='PressAnyButtonForNextTrialText',
+        text='',
         font='Arial',
-        pos=(0, 0), draggable=False, height=1.5, wrapWidth=None, ori=0.0, 
+        units='deg', pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
@@ -491,12 +505,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Fixation" ---
     FixationShape = visual.ShapeStim(
-        win=win, name='FixationShape',
+        win=win, name='FixationShape',units='deg', 
         size=(fixation_diameter, fixation_diameter), vertices='circle',
         ori=0.0, pos=(0, 0), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=None, depth=0.0, interpolate=True)
+    # Run 'Begin Experiment' code from PrintTrialNumber
+    TRIAL_COUNT = 0 # start counting with 1
     
     # --- Initialize components for Routine "Stimulus" ---
     # Run 'Begin Experiment' code from DisplayStimulus
@@ -534,7 +550,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         )
         gabor_arrays[n_row_] = gabor_array
     DisplayStimulusDummy = visual.ShapeStim(
-        win=win, name='DisplayStimulusDummy',
+        win=win, name='DisplayStimulusDummy',units='deg', 
         size=(0.5, 0.5), vertices='circle',
         ori=0.0, pos=(0, 0), draggable=False, anchor='center',
         lineWidth=1.0,
@@ -548,10 +564,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Wait" ---
     AnyButton = keyboard.Keyboard(deviceName='AnyButton')
-    PressAnyButtonText = visual.TextStim(win=win, name='PressAnyButtonText',
-        text='Press any button.',
+    PressAnyButtonForNextTrialText = visual.TextStim(win=win, name='PressAnyButtonForNextTrialText',
+        text='',
         font='Arial',
-        pos=(0, 0), draggable=False, height=1.5, wrapWidth=None, ori=0.0, 
+        units='deg', pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
@@ -569,10 +585,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Wait" ---
     AnyButton = keyboard.Keyboard(deviceName='AnyButton')
-    PressAnyButtonText = visual.TextStim(win=win, name='PressAnyButtonText',
-        text='Press any button.',
+    PressAnyButtonForNextTrialText = visual.TextStim(win=win, name='PressAnyButtonForNextTrialText',
+        text='',
         font='Arial',
-        pos=(0, 0), draggable=False, height=1.5, wrapWidth=None, ori=0.0, 
+        units='deg', pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
@@ -583,10 +599,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Wait" ---
     AnyButton = keyboard.Keyboard(deviceName='AnyButton')
-    PressAnyButtonText = visual.TextStim(win=win, name='PressAnyButtonText',
-        text='Press any button.',
+    PressAnyButtonForNextTrialText = visual.TextStim(win=win, name='PressAnyButtonForNextTrialText',
+        text='',
         font='Arial',
-        pos=(0, 0), draggable=False, height=1.5, wrapWidth=None, ori=0.0, 
+        units='deg', pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
@@ -597,12 +613,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Fixation" ---
     FixationShape = visual.ShapeStim(
-        win=win, name='FixationShape',
+        win=win, name='FixationShape',units='deg', 
         size=(fixation_diameter, fixation_diameter), vertices='circle',
         ori=0.0, pos=(0, 0), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=None, depth=0.0, interpolate=True)
+    # Run 'Begin Experiment' code from PrintTrialNumber
+    TRIAL_COUNT = 0 # start counting with 1
     
     # --- Initialize components for Routine "Stimulus" ---
     # Run 'Begin Experiment' code from DisplayStimulus
@@ -640,7 +658,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         )
         gabor_arrays[n_row_] = gabor_array
     DisplayStimulusDummy = visual.ShapeStim(
-        win=win, name='DisplayStimulusDummy',
+        win=win, name='DisplayStimulusDummy',units='deg', 
         size=(0.5, 0.5), vertices='circle',
         ori=0.0, pos=(0, 0), draggable=False, anchor='center',
         lineWidth=1.0,
@@ -654,10 +672,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Wait" ---
     AnyButton = keyboard.Keyboard(deviceName='AnyButton')
-    PressAnyButtonText = visual.TextStim(win=win, name='PressAnyButtonText',
-        text='Press any button.',
+    PressAnyButtonForNextTrialText = visual.TextStim(win=win, name='PressAnyButtonForNextTrialText',
+        text='',
         font='Arial',
-        pos=(0, 0), draggable=False, height=1.5, wrapWidth=None, ori=0.0, 
+        units='deg', pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
@@ -670,10 +688,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Wait" ---
     AnyButton = keyboard.Keyboard(deviceName='AnyButton')
-    PressAnyButtonText = visual.TextStim(win=win, name='PressAnyButtonText',
-        text='Press any button.',
+    PressAnyButtonForNextTrialText = visual.TextStim(win=win, name='PressAnyButtonForNextTrialText',
+        text='',
         font='Arial',
-        pos=(0, 0), draggable=False, height=1.5, wrapWidth=None, ori=0.0, 
+        units='deg', pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
@@ -684,12 +702,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Fixation" ---
     FixationShape = visual.ShapeStim(
-        win=win, name='FixationShape',
+        win=win, name='FixationShape',units='deg', 
         size=(fixation_diameter, fixation_diameter), vertices='circle',
         ori=0.0, pos=(0, 0), draggable=False, anchor='center',
         lineWidth=1.0,
         colorSpace='rgb', lineColor='white', fillColor='white',
         opacity=None, depth=0.0, interpolate=True)
+    # Run 'Begin Experiment' code from PrintTrialNumber
+    TRIAL_COUNT = 0 # start counting with 1
     
     # --- Initialize components for Routine "Stimulus" ---
     # Run 'Begin Experiment' code from DisplayStimulus
@@ -727,7 +747,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         )
         gabor_arrays[n_row_] = gabor_array
     DisplayStimulusDummy = visual.ShapeStim(
-        win=win, name='DisplayStimulusDummy',
+        win=win, name='DisplayStimulusDummy',units='deg', 
         size=(0.5, 0.5), vertices='circle',
         ori=0.0, pos=(0, 0), draggable=False, anchor='center',
         lineWidth=1.0,
@@ -741,10 +761,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Wait" ---
     AnyButton = keyboard.Keyboard(deviceName='AnyButton')
-    PressAnyButtonText = visual.TextStim(win=win, name='PressAnyButtonText',
-        text='Press any button.',
+    PressAnyButtonForNextTrialText = visual.TextStim(win=win, name='PressAnyButtonForNextTrialText',
+        text='',
         font='Arial',
-        pos=(0, 0), draggable=False, height=1.5, wrapWidth=None, ori=0.0, 
+        units='deg', pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
@@ -753,56 +773,143 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         comp=AnyButton,
     )
     
-    # --- Initialize components for Routine "End" ---
+    # --- Initialize components for Routine "Break" ---
     TakeABreakText = visual.TextStim(win=win, name='TakeABreakText',
         text='Take a break!',
         font='Arial',
-        pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
+        units='deg', pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
-    WaitForEsc = keyboard.Keyboard(deviceName='WaitForEsc')
-    # Run 'Begin Experiment' code from SaveData
+    AnyButton_2 = keyboard.Keyboard(deviceName='AnyButton_2')
+    
+    # --- Initialize components for Routine "QandASession" ---
+    win.allowStencil = True
+    QandAForm = visual.Form(win=win, name='QandAForm',
+        items='C:/Users/kai.rothe/Documents/V1SH_experiment/experiment/QandA.csv',
+        textHeight=0.03,
+        font='Noto Sans',
+        randomize=False,
+        style='dark',
+        fillColor=None, borderColor=None, itemColor='white', 
+        responseColor='white', markerColor='red', colorSpace='rgb', 
+        size=(1, 0.7),
+        pos=(0, 0),
+        itemPadding=0.05,
+        depth=0
+    )
+    CompleteFormButton = keyboard.Keyboard(deviceName='CompleteFormButton')
+    
+    # --- Initialize components for Routine "SaveData" ---
+    # Run 'Begin Experiment' code from SaveAdditionalData
     def save_experiment_files_robust():
         """Save experiment files using PsychoPy's auto-generated filename"""
         try:
             # 'filename' is auto-generated by Builder from Experiment Settings
             # It's already the full path without extension
             # E.g., 'data/participant001_myExperiment_2025-11-20_1435'
-            
             dataDir = os.path.dirname(filename)
-            baseName = os.path.basename(filename)
+            baseName = os.path.basename(filename) 
             
-            # remaining files / trials automatically saved by Builder on-line
+            # Files to save: (relative_path, original_filename, extension)
             files_to_save = [
-                ("", expName, '.psyexp'),
-                ("..", "instructions", '.csv',),
-                ("..", "ExpInfo", '.yaml')
+                ("", expName + '.psyexp', '.psyexp'),
+                ("..", "instructions.csv", '.csv'),
+                ("..", "ExpInfo.yaml", '.yaml'),
+                ("..", "QandA.csv", ".csv")
             ]
             
-            for relative_path, rename, ext in files_to_save:
-                filepath = os.path.join(relative_path, rename, ext)
+            for relative_path, source_filename, ext in files_to_save:
+                # Build the full source path correctly
+                if relative_path:
+                    filepath = os.path.join(_thisDir, relative_path, source_filename)
+                else:
+                    filepath = os.path.join(_thisDir, source_filename)
+                
+                # Normalize the path to handle ".." properly
+                filepath = os.path.normpath(filepath)
+                
+                print(f"Looking for: {filepath}")  # Debug print
+                
                 if os.path.exists(filepath):
                     # Get modification date
                     modDate = datetime.fromtimestamp(
                         os.path.getmtime(filepath)
                     ).strftime('%Y-%m-%d_%H%M')
                     
+                    # Extract just the name without extension for renaming
+                    source_base = os.path.splitext(source_filename)[0]
+                    
                     # Create destination filename
-                    destFilename = f"{baseName}_{rename}_mod-{modDate}{ext}"
+                    destFilename = f"{source_base}_mod-{modDate}{ext}"
                     destPath = os.path.join(dataDir, destFilename)
                     
                     shutil.copy2(filepath, destPath)
                     print(f"Saved: {destFilename}")
+                else:
+                    print(f"File not found: {filepath}")  # Debug print
                     
         except Exception as e:
             logging.error(f'Could not save experiment files: {e}')
+            print(f"Error in save_experiment_files_robust: {e}")  # Additional debug
     
-    # Register with atexit
+    def get_psychopy_info():
+        # Function to dynamically retrieve PsychoPy information
+        psychopy_info = {
+            "Hardware": {
+                "Display": {
+                    "Type": win.monitor.name,
+                    "MeanLuminance_cd/m2": expInfo['mean_luminance_cdpm2'],
+                    "RefreshRate_Hz": expInfo['frameRate'],
+                    "ViewingDistance_cm": expInfo["viewing_distance_cm"],
+                    "GammaCorrection": win.monitor.getGammaGrid() is not None
+                },
+                "EyeTracker": {
+                    "Usage": False # TODO: Replace with actual eye tracker check
+                }
+            }
+        }
+        return psychopy_info
+    
+    def compare_and_update(yaml_file, psychopy_info):
+        # Compare psychopy hardware with manual ExpInfo YAML file
+        # and update values if necessary
+        updated = False
+        for section, values in psychopy_info.items():
+            if section in yaml_file:
+                for key, value in values.items():
+                    if key in yaml_file[section] and yaml_file[section][key] != value:
+                        yaml_file[section][key] = value
+                        updated = True
+                        
+            else:
+                yaml_file[section] = values
+                updated = True
+        
+        if updated:  
+            print("Warning: ExpInfo file modified.")
+            logging.warning("ExpInfo file modified.")
+    
+        return updated
+    
+    # Update ExpInfo with PsychoPy hardware info
+    psychopy_info = get_psychopy_info()
+    compare_and_update(ExpInfo, psychopy_info)
+    
+    # Save if computer fails / experiment is stopped by "esc"
     atexit.register(save_experiment_files_robust)
     
     # Save immediately at start
     save_experiment_files_robust()
+    
+    # --- Initialize components for Routine "End" ---
+    ThankYou = visual.TextStim(win=win, name='ThankYou',
+        text='Thank you!',
+        font='Arial',
+        units='deg', pos=(0, 0), draggable=False, height=1.0, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=0.0);
     
     # create some handy timers
     
@@ -946,7 +1053,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine Wait
         Wait = data.Routine(
             name='Wait',
-            components=[AnyButton, PressAnyButtonText, ReplayAnyButton],
+            components=[AnyButton, PressAnyButtonForNextTrialText, ReplayAnyButton],
         )
         Wait.status = NOT_STARTED
         continueRoutine = True
@@ -955,6 +1062,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         AnyButton.keys = []
         AnyButton.rt = []
         _AnyButton_allKeys = []
+        PressAnyButtonForNextTrialText.setText("Press any button\nfor %d. trial" % (TRIAL_COUNT + 1))
         # store start times for Wait
         Wait.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         Wait.tStart = globalClock.getTime(format='float')
@@ -1016,28 +1124,28 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # a response ends the routine
                     continueRoutine = False
             
-            # *PressAnyButtonText* updates
+            # *PressAnyButtonForNextTrialText* updates
             
-            # if PressAnyButtonText is starting this frame...
-            if PressAnyButtonText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+            # if PressAnyButtonForNextTrialText is starting this frame...
+            if PressAnyButtonForNextTrialText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
                 # keep track of start time/frame for later
-                PressAnyButtonText.frameNStart = frameN  # exact frame index
-                PressAnyButtonText.tStart = t  # local t and not account for scr refresh
-                PressAnyButtonText.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(PressAnyButtonText, 'tStartRefresh')  # time at next scr refresh
+                PressAnyButtonForNextTrialText.frameNStart = frameN  # exact frame index
+                PressAnyButtonForNextTrialText.tStart = t  # local t and not account for scr refresh
+                PressAnyButtonForNextTrialText.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(PressAnyButtonForNextTrialText, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'PressAnyButtonText.started')
+                thisExp.timestampOnFlip(win, 'PressAnyButtonForNextTrialText.started')
                 # update status
-                PressAnyButtonText.status = STARTED
-                PressAnyButtonText.setAutoDraw(True)
+                PressAnyButtonForNextTrialText.status = STARTED
+                PressAnyButtonForNextTrialText.setAutoDraw(True)
             
-            # if PressAnyButtonText is active this frame...
-            if PressAnyButtonText.status == STARTED:
+            # if PressAnyButtonForNextTrialText is active this frame...
+            if PressAnyButtonForNextTrialText.status == STARTED:
                 # update params
                 pass
             
             # if ReplayAnyButton is starting this frame...
-            if ReplayAnyButton.status == NOT_STARTED and t >= 5-frameTolerance:
+            if ReplayAnyButton.status == NOT_STARTED and t >= 0.01-frameTolerance:
                 # keep track of start time/frame for later
                 ReplayAnyButton.frameNStart = frameN  # exact frame index
                 ReplayAnyButton.tStart = t  # local t and not account for scr refresh
@@ -1055,7 +1163,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # if ReplayAnyButton is stopping this frame...
             if ReplayAnyButton.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 6-frameTolerance:
+                if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 0.02-frameTolerance:
                     # keep track of stop time/frame for later
                     ReplayAnyButton.tStop = t  # not accounting for scr refresh
                     ReplayAnyButton.tStopRefresh = tThisFlipGlobal  # on global time
@@ -1158,6 +1266,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             Fixation.status = NOT_STARTED
             continueRoutine = True
             # update component parameters for each repeat
+            # Run 'Begin Routine' code from PrintTrialNumber
+            TRIAL_COUNT += 1
+            print(f"{state} trial {TRIAL_COUNT}") # print to note down and refind errors
+            thisExp.addData('global.thisN', TRIAL_COUNT) # save to compare with noted down global trial number
             # store start times for Fixation
             Fixation.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
             Fixation.tStart = globalClock.getTime(format='float')
@@ -1379,7 +1491,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                         continueRoutine = False
                 
                 # if ReplayResponse is starting this frame...
-                if ReplayResponse.status == NOT_STARTED and t >= 30-frameTolerance:
+                if ReplayResponse.status == NOT_STARTED and t >= 0.01-frameTolerance:
                     # keep track of start time/frame for later
                     ReplayResponse.frameNStart = frameN  # exact frame index
                     ReplayResponse.tStart = t  # local t and not account for scr refresh
@@ -1397,7 +1509,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # if ReplayResponse is stopping this frame...
                 if ReplayResponse.status == STARTED:
                     # is it time to stop? (based on global clock, using actual start)
-                    if tThisFlipGlobal > ReplayResponse.tStartRefresh + 35-frameTolerance:
+                    if tThisFlipGlobal > ReplayResponse.tStartRefresh + 0.02-frameTolerance:
                         # keep track of stop time/frame for later
                         ReplayResponse.tStop = t  # not accounting for scr refresh
                         ReplayResponse.tStopRefresh = tThisFlipGlobal  # on global time
@@ -1461,7 +1573,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # create an object to store info about Routine Wait
             Wait = data.Routine(
                 name='Wait',
-                components=[AnyButton, PressAnyButtonText, ReplayAnyButton],
+                components=[AnyButton, PressAnyButtonForNextTrialText, ReplayAnyButton],
             )
             Wait.status = NOT_STARTED
             continueRoutine = True
@@ -1470,6 +1582,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             AnyButton.keys = []
             AnyButton.rt = []
             _AnyButton_allKeys = []
+            PressAnyButtonForNextTrialText.setText("Press any button\nfor %d. trial" % (TRIAL_COUNT + 1))
             # store start times for Wait
             Wait.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
             Wait.tStart = globalClock.getTime(format='float')
@@ -1531,28 +1644,28 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                         # a response ends the routine
                         continueRoutine = False
                 
-                # *PressAnyButtonText* updates
+                # *PressAnyButtonForNextTrialText* updates
                 
-                # if PressAnyButtonText is starting this frame...
-                if PressAnyButtonText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+                # if PressAnyButtonForNextTrialText is starting this frame...
+                if PressAnyButtonForNextTrialText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
                     # keep track of start time/frame for later
-                    PressAnyButtonText.frameNStart = frameN  # exact frame index
-                    PressAnyButtonText.tStart = t  # local t and not account for scr refresh
-                    PressAnyButtonText.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(PressAnyButtonText, 'tStartRefresh')  # time at next scr refresh
+                    PressAnyButtonForNextTrialText.frameNStart = frameN  # exact frame index
+                    PressAnyButtonForNextTrialText.tStart = t  # local t and not account for scr refresh
+                    PressAnyButtonForNextTrialText.tStartRefresh = tThisFlipGlobal  # on global time
+                    win.timeOnFlip(PressAnyButtonForNextTrialText, 'tStartRefresh')  # time at next scr refresh
                     # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'PressAnyButtonText.started')
+                    thisExp.timestampOnFlip(win, 'PressAnyButtonForNextTrialText.started')
                     # update status
-                    PressAnyButtonText.status = STARTED
-                    PressAnyButtonText.setAutoDraw(True)
+                    PressAnyButtonForNextTrialText.status = STARTED
+                    PressAnyButtonForNextTrialText.setAutoDraw(True)
                 
-                # if PressAnyButtonText is active this frame...
-                if PressAnyButtonText.status == STARTED:
+                # if PressAnyButtonForNextTrialText is active this frame...
+                if PressAnyButtonForNextTrialText.status == STARTED:
                     # update params
                     pass
                 
                 # if ReplayAnyButton is starting this frame...
-                if ReplayAnyButton.status == NOT_STARTED and t >= 5-frameTolerance:
+                if ReplayAnyButton.status == NOT_STARTED and t >= 0.01-frameTolerance:
                     # keep track of start time/frame for later
                     ReplayAnyButton.frameNStart = frameN  # exact frame index
                     ReplayAnyButton.tStart = t  # local t and not account for scr refresh
@@ -1570,7 +1683,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # if ReplayAnyButton is stopping this frame...
                 if ReplayAnyButton.status == STARTED:
                     # is it time to stop? (based on global clock, using actual start)
-                    if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 6-frameTolerance:
+                    if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 0.02-frameTolerance:
                         # keep track of stop time/frame for later
                         ReplayAnyButton.tStop = t  # not accounting for scr refresh
                         ReplayAnyButton.tStopRefresh = tThisFlipGlobal  # on global time
@@ -1766,7 +1879,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine Wait
     Wait = data.Routine(
         name='Wait',
-        components=[AnyButton, PressAnyButtonText, ReplayAnyButton],
+        components=[AnyButton, PressAnyButtonForNextTrialText, ReplayAnyButton],
     )
     Wait.status = NOT_STARTED
     continueRoutine = True
@@ -1775,6 +1888,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     AnyButton.keys = []
     AnyButton.rt = []
     _AnyButton_allKeys = []
+    PressAnyButtonForNextTrialText.setText("Press any button\nfor %d. trial" % (TRIAL_COUNT + 1))
     # store start times for Wait
     Wait.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
     Wait.tStart = globalClock.getTime(format='float')
@@ -1833,28 +1947,28 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # a response ends the routine
                 continueRoutine = False
         
-        # *PressAnyButtonText* updates
+        # *PressAnyButtonForNextTrialText* updates
         
-        # if PressAnyButtonText is starting this frame...
-        if PressAnyButtonText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+        # if PressAnyButtonForNextTrialText is starting this frame...
+        if PressAnyButtonForNextTrialText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
             # keep track of start time/frame for later
-            PressAnyButtonText.frameNStart = frameN  # exact frame index
-            PressAnyButtonText.tStart = t  # local t and not account for scr refresh
-            PressAnyButtonText.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(PressAnyButtonText, 'tStartRefresh')  # time at next scr refresh
+            PressAnyButtonForNextTrialText.frameNStart = frameN  # exact frame index
+            PressAnyButtonForNextTrialText.tStart = t  # local t and not account for scr refresh
+            PressAnyButtonForNextTrialText.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(PressAnyButtonForNextTrialText, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'PressAnyButtonText.started')
+            thisExp.timestampOnFlip(win, 'PressAnyButtonForNextTrialText.started')
             # update status
-            PressAnyButtonText.status = STARTED
-            PressAnyButtonText.setAutoDraw(True)
+            PressAnyButtonForNextTrialText.status = STARTED
+            PressAnyButtonForNextTrialText.setAutoDraw(True)
         
-        # if PressAnyButtonText is active this frame...
-        if PressAnyButtonText.status == STARTED:
+        # if PressAnyButtonForNextTrialText is active this frame...
+        if PressAnyButtonForNextTrialText.status == STARTED:
             # update params
             pass
         
         # if ReplayAnyButton is starting this frame...
-        if ReplayAnyButton.status == NOT_STARTED and t >= 5-frameTolerance:
+        if ReplayAnyButton.status == NOT_STARTED and t >= 0.01-frameTolerance:
             # keep track of start time/frame for later
             ReplayAnyButton.frameNStart = frameN  # exact frame index
             ReplayAnyButton.tStart = t  # local t and not account for scr refresh
@@ -1872,7 +1986,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # if ReplayAnyButton is stopping this frame...
         if ReplayAnyButton.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 6-frameTolerance:
+            if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 0.02-frameTolerance:
                 # keep track of stop time/frame for later
                 ReplayAnyButton.tStop = t  # not accounting for scr refresh
                 ReplayAnyButton.tStopRefresh = tThisFlipGlobal  # on global time
@@ -1965,7 +2079,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine Wait
         Wait = data.Routine(
             name='Wait',
-            components=[AnyButton, PressAnyButtonText, ReplayAnyButton],
+            components=[AnyButton, PressAnyButtonForNextTrialText, ReplayAnyButton],
         )
         Wait.status = NOT_STARTED
         continueRoutine = True
@@ -1974,6 +2088,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         AnyButton.keys = []
         AnyButton.rt = []
         _AnyButton_allKeys = []
+        PressAnyButtonForNextTrialText.setText("Press any button\nfor %d. trial" % (TRIAL_COUNT + 1))
         # store start times for Wait
         Wait.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         Wait.tStart = globalClock.getTime(format='float')
@@ -2035,28 +2150,28 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # a response ends the routine
                     continueRoutine = False
             
-            # *PressAnyButtonText* updates
+            # *PressAnyButtonForNextTrialText* updates
             
-            # if PressAnyButtonText is starting this frame...
-            if PressAnyButtonText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+            # if PressAnyButtonForNextTrialText is starting this frame...
+            if PressAnyButtonForNextTrialText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
                 # keep track of start time/frame for later
-                PressAnyButtonText.frameNStart = frameN  # exact frame index
-                PressAnyButtonText.tStart = t  # local t and not account for scr refresh
-                PressAnyButtonText.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(PressAnyButtonText, 'tStartRefresh')  # time at next scr refresh
+                PressAnyButtonForNextTrialText.frameNStart = frameN  # exact frame index
+                PressAnyButtonForNextTrialText.tStart = t  # local t and not account for scr refresh
+                PressAnyButtonForNextTrialText.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(PressAnyButtonForNextTrialText, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'PressAnyButtonText.started')
+                thisExp.timestampOnFlip(win, 'PressAnyButtonForNextTrialText.started')
                 # update status
-                PressAnyButtonText.status = STARTED
-                PressAnyButtonText.setAutoDraw(True)
+                PressAnyButtonForNextTrialText.status = STARTED
+                PressAnyButtonForNextTrialText.setAutoDraw(True)
             
-            # if PressAnyButtonText is active this frame...
-            if PressAnyButtonText.status == STARTED:
+            # if PressAnyButtonForNextTrialText is active this frame...
+            if PressAnyButtonForNextTrialText.status == STARTED:
                 # update params
                 pass
             
             # if ReplayAnyButton is starting this frame...
-            if ReplayAnyButton.status == NOT_STARTED and t >= 5-frameTolerance:
+            if ReplayAnyButton.status == NOT_STARTED and t >= 0.01-frameTolerance:
                 # keep track of start time/frame for later
                 ReplayAnyButton.frameNStart = frameN  # exact frame index
                 ReplayAnyButton.tStart = t  # local t and not account for scr refresh
@@ -2074,7 +2189,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # if ReplayAnyButton is stopping this frame...
             if ReplayAnyButton.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 6-frameTolerance:
+                if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 0.02-frameTolerance:
                     # keep track of stop time/frame for later
                     ReplayAnyButton.tStop = t  # not accounting for scr refresh
                     ReplayAnyButton.tStopRefresh = tThisFlipGlobal  # on global time
@@ -2177,6 +2292,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             Fixation.status = NOT_STARTED
             continueRoutine = True
             # update component parameters for each repeat
+            # Run 'Begin Routine' code from PrintTrialNumber
+            TRIAL_COUNT += 1
+            print(f"{state} trial {TRIAL_COUNT}") # print to note down and refind errors
+            thisExp.addData('global.thisN', TRIAL_COUNT) # save to compare with noted down global trial number
             # store start times for Fixation
             Fixation.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
             Fixation.tStart = globalClock.getTime(format='float')
@@ -2398,7 +2517,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                         continueRoutine = False
                 
                 # if ReplayResponse is starting this frame...
-                if ReplayResponse.status == NOT_STARTED and t >= 30-frameTolerance:
+                if ReplayResponse.status == NOT_STARTED and t >= 0.01-frameTolerance:
                     # keep track of start time/frame for later
                     ReplayResponse.frameNStart = frameN  # exact frame index
                     ReplayResponse.tStart = t  # local t and not account for scr refresh
@@ -2416,7 +2535,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # if ReplayResponse is stopping this frame...
                 if ReplayResponse.status == STARTED:
                     # is it time to stop? (based on global clock, using actual start)
-                    if tThisFlipGlobal > ReplayResponse.tStartRefresh + 35-frameTolerance:
+                    if tThisFlipGlobal > ReplayResponse.tStartRefresh + 0.02-frameTolerance:
                         # keep track of stop time/frame for later
                         ReplayResponse.tStop = t  # not accounting for scr refresh
                         ReplayResponse.tStopRefresh = tThisFlipGlobal  # on global time
@@ -2480,7 +2599,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # create an object to store info about Routine Wait
             Wait = data.Routine(
                 name='Wait',
-                components=[AnyButton, PressAnyButtonText, ReplayAnyButton],
+                components=[AnyButton, PressAnyButtonForNextTrialText, ReplayAnyButton],
             )
             Wait.status = NOT_STARTED
             continueRoutine = True
@@ -2489,6 +2608,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             AnyButton.keys = []
             AnyButton.rt = []
             _AnyButton_allKeys = []
+            PressAnyButtonForNextTrialText.setText("Press any button\nfor %d. trial" % (TRIAL_COUNT + 1))
             # store start times for Wait
             Wait.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
             Wait.tStart = globalClock.getTime(format='float')
@@ -2550,28 +2670,28 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                         # a response ends the routine
                         continueRoutine = False
                 
-                # *PressAnyButtonText* updates
+                # *PressAnyButtonForNextTrialText* updates
                 
-                # if PressAnyButtonText is starting this frame...
-                if PressAnyButtonText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+                # if PressAnyButtonForNextTrialText is starting this frame...
+                if PressAnyButtonForNextTrialText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
                     # keep track of start time/frame for later
-                    PressAnyButtonText.frameNStart = frameN  # exact frame index
-                    PressAnyButtonText.tStart = t  # local t and not account for scr refresh
-                    PressAnyButtonText.tStartRefresh = tThisFlipGlobal  # on global time
-                    win.timeOnFlip(PressAnyButtonText, 'tStartRefresh')  # time at next scr refresh
+                    PressAnyButtonForNextTrialText.frameNStart = frameN  # exact frame index
+                    PressAnyButtonForNextTrialText.tStart = t  # local t and not account for scr refresh
+                    PressAnyButtonForNextTrialText.tStartRefresh = tThisFlipGlobal  # on global time
+                    win.timeOnFlip(PressAnyButtonForNextTrialText, 'tStartRefresh')  # time at next scr refresh
                     # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'PressAnyButtonText.started')
+                    thisExp.timestampOnFlip(win, 'PressAnyButtonForNextTrialText.started')
                     # update status
-                    PressAnyButtonText.status = STARTED
-                    PressAnyButtonText.setAutoDraw(True)
+                    PressAnyButtonForNextTrialText.status = STARTED
+                    PressAnyButtonForNextTrialText.setAutoDraw(True)
                 
-                # if PressAnyButtonText is active this frame...
-                if PressAnyButtonText.status == STARTED:
+                # if PressAnyButtonForNextTrialText is active this frame...
+                if PressAnyButtonForNextTrialText.status == STARTED:
                     # update params
                     pass
                 
                 # if ReplayAnyButton is starting this frame...
-                if ReplayAnyButton.status == NOT_STARTED and t >= 5-frameTolerance:
+                if ReplayAnyButton.status == NOT_STARTED and t >= 0.01-frameTolerance:
                     # keep track of start time/frame for later
                     ReplayAnyButton.frameNStart = frameN  # exact frame index
                     ReplayAnyButton.tStart = t  # local t and not account for scr refresh
@@ -2589,7 +2709,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # if ReplayAnyButton is stopping this frame...
                 if ReplayAnyButton.status == STARTED:
                     # is it time to stop? (based on global clock, using actual start)
-                    if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 6-frameTolerance:
+                    if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 0.02-frameTolerance:
                         # keep track of stop time/frame for later
                         ReplayAnyButton.tStop = t  # not accounting for scr refresh
                         ReplayAnyButton.tStopRefresh = tThisFlipGlobal  # on global time
@@ -2785,7 +2905,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # create an object to store info about Routine Wait
     Wait = data.Routine(
         name='Wait',
-        components=[AnyButton, PressAnyButtonText, ReplayAnyButton],
+        components=[AnyButton, PressAnyButtonForNextTrialText, ReplayAnyButton],
     )
     Wait.status = NOT_STARTED
     continueRoutine = True
@@ -2794,6 +2914,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     AnyButton.keys = []
     AnyButton.rt = []
     _AnyButton_allKeys = []
+    PressAnyButtonForNextTrialText.setText("Press any button\nfor %d. trial" % (TRIAL_COUNT + 1))
     # store start times for Wait
     Wait.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
     Wait.tStart = globalClock.getTime(format='float')
@@ -2852,28 +2973,28 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # a response ends the routine
                 continueRoutine = False
         
-        # *PressAnyButtonText* updates
+        # *PressAnyButtonForNextTrialText* updates
         
-        # if PressAnyButtonText is starting this frame...
-        if PressAnyButtonText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+        # if PressAnyButtonForNextTrialText is starting this frame...
+        if PressAnyButtonForNextTrialText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
             # keep track of start time/frame for later
-            PressAnyButtonText.frameNStart = frameN  # exact frame index
-            PressAnyButtonText.tStart = t  # local t and not account for scr refresh
-            PressAnyButtonText.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(PressAnyButtonText, 'tStartRefresh')  # time at next scr refresh
+            PressAnyButtonForNextTrialText.frameNStart = frameN  # exact frame index
+            PressAnyButtonForNextTrialText.tStart = t  # local t and not account for scr refresh
+            PressAnyButtonForNextTrialText.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(PressAnyButtonForNextTrialText, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'PressAnyButtonText.started')
+            thisExp.timestampOnFlip(win, 'PressAnyButtonForNextTrialText.started')
             # update status
-            PressAnyButtonText.status = STARTED
-            PressAnyButtonText.setAutoDraw(True)
+            PressAnyButtonForNextTrialText.status = STARTED
+            PressAnyButtonForNextTrialText.setAutoDraw(True)
         
-        # if PressAnyButtonText is active this frame...
-        if PressAnyButtonText.status == STARTED:
+        # if PressAnyButtonForNextTrialText is active this frame...
+        if PressAnyButtonForNextTrialText.status == STARTED:
             # update params
             pass
         
         # if ReplayAnyButton is starting this frame...
-        if ReplayAnyButton.status == NOT_STARTED and t >= 5-frameTolerance:
+        if ReplayAnyButton.status == NOT_STARTED and t >= 0.01-frameTolerance:
             # keep track of start time/frame for later
             ReplayAnyButton.frameNStart = frameN  # exact frame index
             ReplayAnyButton.tStart = t  # local t and not account for scr refresh
@@ -2891,7 +3012,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # if ReplayAnyButton is stopping this frame...
         if ReplayAnyButton.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 6-frameTolerance:
+            if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 0.02-frameTolerance:
                 # keep track of stop time/frame for later
                 ReplayAnyButton.tStop = t  # not accounting for scr refresh
                 ReplayAnyButton.tStopRefresh = tThisFlipGlobal  # on global time
@@ -2995,6 +3116,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         Fixation.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
+        # Run 'Begin Routine' code from PrintTrialNumber
+        TRIAL_COUNT += 1
+        print(f"{state} trial {TRIAL_COUNT}") # print to note down and refind errors
+        thisExp.addData('global.thisN', TRIAL_COUNT) # save to compare with noted down global trial number
         # store start times for Fixation
         Fixation.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         Fixation.tStart = globalClock.getTime(format='float')
@@ -3216,7 +3341,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     continueRoutine = False
             
             # if ReplayResponse is starting this frame...
-            if ReplayResponse.status == NOT_STARTED and t >= 30-frameTolerance:
+            if ReplayResponse.status == NOT_STARTED and t >= 0.01-frameTolerance:
                 # keep track of start time/frame for later
                 ReplayResponse.frameNStart = frameN  # exact frame index
                 ReplayResponse.tStart = t  # local t and not account for scr refresh
@@ -3234,7 +3359,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # if ReplayResponse is stopping this frame...
             if ReplayResponse.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > ReplayResponse.tStartRefresh + 35-frameTolerance:
+                if tThisFlipGlobal > ReplayResponse.tStartRefresh + 0.02-frameTolerance:
                     # keep track of stop time/frame for later
                     ReplayResponse.tStop = t  # not accounting for scr refresh
                     ReplayResponse.tStopRefresh = tThisFlipGlobal  # on global time
@@ -3298,7 +3423,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine Wait
         Wait = data.Routine(
             name='Wait',
-            components=[AnyButton, PressAnyButtonText, ReplayAnyButton],
+            components=[AnyButton, PressAnyButtonForNextTrialText, ReplayAnyButton],
         )
         Wait.status = NOT_STARTED
         continueRoutine = True
@@ -3307,6 +3432,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         AnyButton.keys = []
         AnyButton.rt = []
         _AnyButton_allKeys = []
+        PressAnyButtonForNextTrialText.setText("Press any button\nfor %d. trial" % (TRIAL_COUNT + 1))
         # store start times for Wait
         Wait.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         Wait.tStart = globalClock.getTime(format='float')
@@ -3368,28 +3494,28 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # a response ends the routine
                     continueRoutine = False
             
-            # *PressAnyButtonText* updates
+            # *PressAnyButtonForNextTrialText* updates
             
-            # if PressAnyButtonText is starting this frame...
-            if PressAnyButtonText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+            # if PressAnyButtonForNextTrialText is starting this frame...
+            if PressAnyButtonForNextTrialText.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
                 # keep track of start time/frame for later
-                PressAnyButtonText.frameNStart = frameN  # exact frame index
-                PressAnyButtonText.tStart = t  # local t and not account for scr refresh
-                PressAnyButtonText.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(PressAnyButtonText, 'tStartRefresh')  # time at next scr refresh
+                PressAnyButtonForNextTrialText.frameNStart = frameN  # exact frame index
+                PressAnyButtonForNextTrialText.tStart = t  # local t and not account for scr refresh
+                PressAnyButtonForNextTrialText.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(PressAnyButtonForNextTrialText, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'PressAnyButtonText.started')
+                thisExp.timestampOnFlip(win, 'PressAnyButtonForNextTrialText.started')
                 # update status
-                PressAnyButtonText.status = STARTED
-                PressAnyButtonText.setAutoDraw(True)
+                PressAnyButtonForNextTrialText.status = STARTED
+                PressAnyButtonForNextTrialText.setAutoDraw(True)
             
-            # if PressAnyButtonText is active this frame...
-            if PressAnyButtonText.status == STARTED:
+            # if PressAnyButtonForNextTrialText is active this frame...
+            if PressAnyButtonForNextTrialText.status == STARTED:
                 # update params
                 pass
             
             # if ReplayAnyButton is starting this frame...
-            if ReplayAnyButton.status == NOT_STARTED and t >= 5-frameTolerance:
+            if ReplayAnyButton.status == NOT_STARTED and t >= 0.01-frameTolerance:
                 # keep track of start time/frame for later
                 ReplayAnyButton.frameNStart = frameN  # exact frame index
                 ReplayAnyButton.tStart = t  # local t and not account for scr refresh
@@ -3407,7 +3533,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # if ReplayAnyButton is stopping this frame...
             if ReplayAnyButton.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 6-frameTolerance:
+                if tThisFlipGlobal > ReplayAnyButton.tStartRefresh + 0.02-frameTolerance:
                     # keep track of stop time/frame for later
                     ReplayAnyButton.tStop = t  # not accounting for scr refresh
                     ReplayAnyButton.tStopRefresh = tThisFlipGlobal  # on global time
@@ -3497,28 +3623,28 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         stimOut=params,
         dataOut=['n','all_mean','all_std', 'all_raw'])
     
-    # --- Prepare to start Routine "End" ---
-    # create an object to store info about Routine End
-    End = data.Routine(
-        name='End',
-        components=[TakeABreakText, WaitForEsc],
+    # --- Prepare to start Routine "Break" ---
+    # create an object to store info about Routine Break
+    Break = data.Routine(
+        name='Break',
+        components=[TakeABreakText, AnyButton_2],
     )
-    End.status = NOT_STARTED
+    Break.status = NOT_STARTED
     continueRoutine = True
     # update component parameters for each repeat
-    # create starting attributes for WaitForEsc
-    WaitForEsc.keys = []
-    WaitForEsc.rt = []
-    _WaitForEsc_allKeys = []
-    # store start times for End
-    End.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
-    End.tStart = globalClock.getTime(format='float')
-    End.status = STARTED
-    thisExp.addData('End.started', End.tStart)
-    End.maxDuration = None
+    # create starting attributes for AnyButton_2
+    AnyButton_2.keys = []
+    AnyButton_2.rt = []
+    _AnyButton_2_allKeys = []
+    # store start times for Break
+    Break.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+    Break.tStart = globalClock.getTime(format='float')
+    Break.status = STARTED
+    thisExp.addData('Break.started', Break.tStart)
+    Break.maxDuration = None
     # keep track of which components have finished
-    EndComponents = End.components
-    for thisComponent in End.components:
+    BreakComponents = Break.components
+    for thisComponent in Break.components:
         thisComponent.tStart = None
         thisComponent.tStop = None
         thisComponent.tStartRefresh = None
@@ -3530,8 +3656,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     _timeToFirstFrame = win.getFutureFlipTime(clock="now")
     frameN = -1
     
-    # --- Run Routine "End" ---
-    End.forceEnded = routineForceEnded = not continueRoutine
+    # --- Run Routine "Break" ---
+    Break.forceEnded = routineForceEnded = not continueRoutine
     while continueRoutine:
         # get current time
         t = routineTimer.getTime()
@@ -3560,33 +3686,384 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # *WaitForEsc* updates
+        # *AnyButton_2* updates
         waitOnFlip = False
         
-        # if WaitForEsc is starting this frame...
-        if WaitForEsc.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # if AnyButton_2 is starting this frame...
+        if AnyButton_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            WaitForEsc.frameNStart = frameN  # exact frame index
-            WaitForEsc.tStart = t  # local t and not account for scr refresh
-            WaitForEsc.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(WaitForEsc, 'tStartRefresh')  # time at next scr refresh
+            AnyButton_2.frameNStart = frameN  # exact frame index
+            AnyButton_2.tStart = t  # local t and not account for scr refresh
+            AnyButton_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(AnyButton_2, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'WaitForEsc.started')
+            thisExp.timestampOnFlip(win, 'AnyButton_2.started')
             # update status
-            WaitForEsc.status = STARTED
+            AnyButton_2.status = STARTED
             # keyboard checking is just starting
             waitOnFlip = True
-            win.callOnFlip(WaitForEsc.clock.reset)  # t=0 on next screen flip
-            win.callOnFlip(WaitForEsc.clearEvents, eventType='keyboard')  # clear events on next screen flip
-        if WaitForEsc.status == STARTED and not waitOnFlip:
-            theseKeys = WaitForEsc.getKeys(keyList=['esc'], ignoreKeys=["escape"], waitRelease=False)
-            _WaitForEsc_allKeys.extend(theseKeys)
-            if len(_WaitForEsc_allKeys):
-                WaitForEsc.keys = _WaitForEsc_allKeys[-1].name  # just the last key pressed
-                WaitForEsc.rt = _WaitForEsc_allKeys[-1].rt
-                WaitForEsc.duration = _WaitForEsc_allKeys[-1].duration
+            win.callOnFlip(AnyButton_2.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(AnyButton_2.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if AnyButton_2.status == STARTED and not waitOnFlip:
+            theseKeys = AnyButton_2.getKeys(keyList=None, ignoreKeys=["escape"], waitRelease=False)
+            _AnyButton_2_allKeys.extend(theseKeys)
+            if len(_AnyButton_2_allKeys):
+                AnyButton_2.keys = _AnyButton_2_allKeys[-1].name  # just the last key pressed
+                AnyButton_2.rt = _AnyButton_2_allKeys[-1].rt
+                AnyButton_2.duration = _AnyButton_2_allKeys[-1].duration
                 # a response ends the routine
                 continueRoutine = False
+        
+        # check for quit (typically the Esc key)
+        if defaultKeyboard.getKeys(keyList=["escape"]):
+            thisExp.status = FINISHED
+        if thisExp.status == FINISHED or endExpNow:
+            endExperiment(thisExp, win=win)
+            return
+        # pause experiment here if requested
+        if thisExp.status == PAUSED:
+            pauseExperiment(
+                thisExp=thisExp, 
+                win=win, 
+                timers=[routineTimer, globalClock], 
+                currentRoutine=Break,
+            )
+            # skip the frame we paused on
+            continue
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            Break.forceEnded = routineForceEnded = True
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in Break.components:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # --- Ending Routine "Break" ---
+    for thisComponent in Break.components:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # store stop times for Break
+    Break.tStop = globalClock.getTime(format='float')
+    Break.tStopRefresh = tThisFlipGlobal
+    thisExp.addData('Break.stopped', Break.tStop)
+    # check responses
+    if AnyButton_2.keys in ['', [], None]:  # No response was made
+        AnyButton_2.keys = None
+    thisExp.addData('AnyButton_2.keys',AnyButton_2.keys)
+    if AnyButton_2.keys != None:  # we had a response
+        thisExp.addData('AnyButton_2.rt', AnyButton_2.rt)
+        thisExp.addData('AnyButton_2.duration', AnyButton_2.duration)
+    thisExp.nextEntry()
+    # the Routine "Break" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    
+    # --- Prepare to start Routine "QandASession" ---
+    # create an object to store info about Routine QandASession
+    QandASession = data.Routine(
+        name='QandASession',
+        components=[QandAForm, CompleteFormButton],
+    )
+    QandASession.status = NOT_STARTED
+    continueRoutine = True
+    # update component parameters for each repeat
+    # create starting attributes for CompleteFormButton
+    CompleteFormButton.keys = []
+    CompleteFormButton.rt = []
+    _CompleteFormButton_allKeys = []
+    # store start times for QandASession
+    QandASession.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+    QandASession.tStart = globalClock.getTime(format='float')
+    QandASession.status = STARTED
+    thisExp.addData('QandASession.started', QandASession.tStart)
+    QandASession.maxDuration = None
+    # keep track of which components have finished
+    QandASessionComponents = QandASession.components
+    for thisComponent in QandASession.components:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    # reset timers
+    t = 0
+    _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+    frameN = -1
+    
+    # --- Run Routine "QandASession" ---
+    QandASession.forceEnded = routineForceEnded = not continueRoutine
+    while continueRoutine:
+        # get current time
+        t = routineTimer.getTime()
+        tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+        tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *QandAForm* updates
+        
+        # if QandAForm is starting this frame...
+        if QandAForm.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            QandAForm.frameNStart = frameN  # exact frame index
+            QandAForm.tStart = t  # local t and not account for scr refresh
+            QandAForm.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(QandAForm, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'QandAForm.started')
+            # update status
+            QandAForm.status = STARTED
+            QandAForm.setAutoDraw(True)
+        
+        # if QandAForm is active this frame...
+        if QandAForm.status == STARTED:
+            # update params
+            pass
+        
+        # *CompleteFormButton* updates
+        waitOnFlip = False
+        
+        # if CompleteFormButton is starting this frame...
+        if CompleteFormButton.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            CompleteFormButton.frameNStart = frameN  # exact frame index
+            CompleteFormButton.tStart = t  # local t and not account for scr refresh
+            CompleteFormButton.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(CompleteFormButton, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'CompleteFormButton.started')
+            # update status
+            CompleteFormButton.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(CompleteFormButton.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(CompleteFormButton.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if CompleteFormButton.status == STARTED and not waitOnFlip:
+            theseKeys = CompleteFormButton.getKeys(keyList=['right'], ignoreKeys=["escape"], waitRelease=False)
+            _CompleteFormButton_allKeys.extend(theseKeys)
+            if len(_CompleteFormButton_allKeys):
+                CompleteFormButton.keys = _CompleteFormButton_allKeys[-1].name  # just the last key pressed
+                CompleteFormButton.rt = _CompleteFormButton_allKeys[-1].rt
+                CompleteFormButton.duration = _CompleteFormButton_allKeys[-1].duration
+                # a response ends the routine
+                continueRoutine = False
+        
+        # check for quit (typically the Esc key)
+        if defaultKeyboard.getKeys(keyList=["escape"]):
+            thisExp.status = FINISHED
+        if thisExp.status == FINISHED or endExpNow:
+            endExperiment(thisExp, win=win)
+            return
+        # pause experiment here if requested
+        if thisExp.status == PAUSED:
+            pauseExperiment(
+                thisExp=thisExp, 
+                win=win, 
+                timers=[routineTimer, globalClock], 
+                currentRoutine=QandASession,
+            )
+            # skip the frame we paused on
+            continue
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            QandASession.forceEnded = routineForceEnded = True
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in QandASession.components:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # --- Ending Routine "QandASession" ---
+    for thisComponent in QandASession.components:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # store stop times for QandASession
+    QandASession.tStop = globalClock.getTime(format='float')
+    QandASession.tStopRefresh = tThisFlipGlobal
+    thisExp.addData('QandASession.stopped', QandASession.tStop)
+    QandAForm.addDataToExp(thisExp, 'rows')
+    QandAForm.autodraw = False
+    # check responses
+    if CompleteFormButton.keys in ['', [], None]:  # No response was made
+        CompleteFormButton.keys = None
+    thisExp.addData('CompleteFormButton.keys',CompleteFormButton.keys)
+    if CompleteFormButton.keys != None:  # we had a response
+        thisExp.addData('CompleteFormButton.rt', CompleteFormButton.rt)
+        thisExp.addData('CompleteFormButton.duration', CompleteFormButton.duration)
+    thisExp.nextEntry()
+    # the Routine "QandASession" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    
+    # --- Prepare to start Routine "SaveData" ---
+    # create an object to store info about Routine SaveData
+    SaveData = data.Routine(
+        name='SaveData',
+        components=[],
+    )
+    SaveData.status = NOT_STARTED
+    continueRoutine = True
+    # update component parameters for each repeat
+    # store start times for SaveData
+    SaveData.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+    SaveData.tStart = globalClock.getTime(format='float')
+    SaveData.status = STARTED
+    thisExp.addData('SaveData.started', SaveData.tStart)
+    SaveData.maxDuration = None
+    # keep track of which components have finished
+    SaveDataComponents = SaveData.components
+    for thisComponent in SaveData.components:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    # reset timers
+    t = 0
+    _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+    frameN = -1
+    
+    # --- Run Routine "SaveData" ---
+    SaveData.forceEnded = routineForceEnded = not continueRoutine
+    while continueRoutine:
+        # get current time
+        t = routineTimer.getTime()
+        tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+        tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # check for quit (typically the Esc key)
+        if defaultKeyboard.getKeys(keyList=["escape"]):
+            thisExp.status = FINISHED
+        if thisExp.status == FINISHED or endExpNow:
+            endExperiment(thisExp, win=win)
+            return
+        # pause experiment here if requested
+        if thisExp.status == PAUSED:
+            pauseExperiment(
+                thisExp=thisExp, 
+                win=win, 
+                timers=[routineTimer, globalClock], 
+                currentRoutine=SaveData,
+            )
+            # skip the frame we paused on
+            continue
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            SaveData.forceEnded = routineForceEnded = True
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in SaveData.components:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # --- Ending Routine "SaveData" ---
+    for thisComponent in SaveData.components:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    # store stop times for SaveData
+    SaveData.tStop = globalClock.getTime(format='float')
+    SaveData.tStopRefresh = tThisFlipGlobal
+    thisExp.addData('SaveData.stopped', SaveData.tStop)
+    # Run 'End Routine' code from SaveAdditionalData
+    # Save at the end
+    save_experiment_files_robust()
+    thisExp.nextEntry()
+    # the Routine "SaveData" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    
+    # --- Prepare to start Routine "End" ---
+    # create an object to store info about Routine End
+    End = data.Routine(
+        name='End',
+        components=[ThankYou],
+    )
+    End.status = NOT_STARTED
+    continueRoutine = True
+    # update component parameters for each repeat
+    # store start times for End
+    End.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+    End.tStart = globalClock.getTime(format='float')
+    End.status = STARTED
+    thisExp.addData('End.started', End.tStart)
+    End.maxDuration = None
+    # keep track of which components have finished
+    EndComponents = End.components
+    for thisComponent in End.components:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    # reset timers
+    t = 0
+    _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+    frameN = -1
+    
+    # --- Run Routine "End" ---
+    End.forceEnded = routineForceEnded = not continueRoutine
+    while continueRoutine and routineTimer.getTime() < 5.0:
+        # get current time
+        t = routineTimer.getTime()
+        tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+        tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *ThankYou* updates
+        
+        # if ThankYou is starting this frame...
+        if ThankYou.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            ThankYou.frameNStart = frameN  # exact frame index
+            ThankYou.tStart = t  # local t and not account for scr refresh
+            ThankYou.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(ThankYou, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'ThankYou.started')
+            # update status
+            ThankYou.status = STARTED
+            ThankYou.setAutoDraw(True)
+        
+        # if ThankYou is active this frame...
+        if ThankYou.status == STARTED:
+            # update params
+            pass
+        
+        # if ThankYou is stopping this frame...
+        if ThankYou.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > ThankYou.tStartRefresh + 5.0-frameTolerance:
+                # keep track of stop time/frame for later
+                ThankYou.tStop = t  # not accounting for scr refresh
+                ThankYou.tStopRefresh = tThisFlipGlobal  # on global time
+                ThankYou.frameNStop = frameN  # exact frame index
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'ThankYou.stopped')
+                # update status
+                ThankYou.status = FINISHED
+                ThankYou.setAutoDraw(False)
         
         # check for quit (typically the Esc key)
         if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -3627,16 +4104,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     End.tStop = globalClock.getTime(format='float')
     End.tStopRefresh = tThisFlipGlobal
     thisExp.addData('End.stopped', End.tStop)
-    # check responses
-    if WaitForEsc.keys in ['', [], None]:  # No response was made
-        WaitForEsc.keys = None
-    thisExp.addData('WaitForEsc.keys',WaitForEsc.keys)
-    if WaitForEsc.keys != None:  # we had a response
-        thisExp.addData('WaitForEsc.rt', WaitForEsc.rt)
-        thisExp.addData('WaitForEsc.duration', WaitForEsc.duration)
+    # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
+    if End.maxDurationReached:
+        routineTimer.addTime(-End.maxDuration)
+    elif End.forceEnded:
+        routineTimer.reset()
+    else:
+        routineTimer.addTime(-5.000000)
     thisExp.nextEntry()
-    # the Routine "End" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset()
     
     # mark experiment as finished
     endExperiment(thisExp, win=win)
