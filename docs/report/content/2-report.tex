@@ -1,0 +1,111 @@
+%----------------------------------------------------------------------------------------
+% Essay
+%----------------------------------------------------------------------------------------
+\newpage
+\setcounter{page}{1} % Sets counter of page to 1
+
+\section{Introduction} 
+% Introduction & background: The Introduction should frame the scientific issues that motivate the study. It should briefly indicate the objectives of the study and provide enough background information to clarify why the study was undertaken and what hypotheses are tested. An overview of the key publications in the field is essential. 
+
+- Scientific issue: How objects recognized and localized? One startegy: localize border between textures. Neural mechanisms?
+- \cite{li_can_2000} model: neural circuits in V1 through iso-oriented inhibition and co-linear excitation, see Fig.\ \ref{fig:model}.I
+- \cite{popple_testing_2001} experiment: measured border localization inconsistent with bias predicitons by model
+-> limited in stimulus duration without visual backward masking -> confounding feedback from higher visual areas \cite{popple_testing_2001, liu_testing_2019, something_about_feedback_speed?}
+-> limited in central viewing -> confounding feedback from higher visual areas \cite{zhaoping_feedback_2017}
+- objectives of study: 
+	1. replicate V1 model
+	2. test predictions of model
+	3. replicate and adapt experiment for borders in periphery, shown only 20ms with visual backwards masking
+	% 4. collect data and compare with model
+
+% - Helmholtz illusion: if so, TODO short literature review on explanations and neural mechanisms of visual size estimation
+
+\section{Methods}
+% The Materials & Methods section should be brief but adequate to allow a qualified investigator to repeat the research. The equipment used should be described in detail. All methods of analysis and statistical testing must be identified and explained in detail. 
+
+1. V1 model replication:
+- implemented available at \url{https://github.com/iakioh/V1SH_model}
+- using Euler method for simulation time of $T = 12 \alpha$ where $\alpha$ denotes membrane time constant, with a typical step size of $\delta t = 0.01 \alpha$
+- model parameters as documented for original model \cite{li_neural_1998, zhaoping_understanding_2014}
+- exception: orientation-unspecific normalization for excitatory pyramidal cell, following notation with location $i$ and tuned to orientation $\theta$ as 
+\begin{equation}
+	I_o = 0.85 - 2.0 \left[ \frac{\sum_{j \in S_i} \sum_{\theta'} g_{x}(x_{j\theta'} ) }{C} \right]
+\end{equation}
+with $C = 16$ following the original implementation, not documentation where $C = \sum_{j \in S_i} 1 = 25$ using a Manhatten grid for sampling visual input
+- initial condition: resting state for no visual input (without top-down feedback)
+\begin{align}
+	y_0 &= I_c / \alpha = 1.0 \\
+	x_0 &= \left( I_o - g_y(y_0) \cdot \sum_{\theta'} \psi(\theta') \right) / \alpha = - 1.65
+\end{align}
+
+2. predictions:
+- border saliency = highest saliency of grid column close, i.e.\ maximally 3 columns distance, to border. Saliency of grid columns = average saliency of all column locations. Saliency of a location = highest (temporally averaged) pyramidal response to inputs at this location. Z-scored over all locations $i$.
+- border localization bias = distance between most salient column close to border and actual border, i.e.\ midpoint between textures. Positive if bias towards orientation texture parallel to border, else negative. 
+
+3. experimental design:
+- see Fig.\ \ref{fig:experiment}.I
+- TODO: add ...
+
+% 4. data analysis: 
+% - Maximum likelihood fit of responses in dependence of horizontal distance of texture borders with Cumulative Gaussian distribution $\mathcal{N}(\mu, \sigma)$
+% - Mean $\mu = -2 \text{bias}$ for localization bias
+% - Standard deviation $\sigma$ = sensitivity and therefore monotonically dependent on saliency of texture borders
+% - Bootstrapping for confidence intervals
+
+\section{Results}
+% The Results of the study should be laid out in a series of declarative paragraphs. Only results essential to establish the main points of the work should be included. Often the reporting of the results can be clearer if broken down into subsections. All figures and tables must be cited in the text, and must be numbered in the order of their text citation. Figure legends should be self-explanatory, without referring to the text. They should identify the material that is being illustrated, what is shown, and its significance. Each table should be identified by number and should have a title. The Results section should not include long passages about the rationale of the experiments (which belong in the Introduction), or the methods used (which belong in the Material and Methods), nor should it include justification or discussion of the results (which belong in the Discussion section). 
+
+1. Model replication:
+- successful replication of V1 model verified by visualization of all model parameters, including connections, and comparison with expectation and original model \cite{li_neural_1998} as well as replication of 
+	- model responses to calibration inputs, see Fig.\ \ref{fig:model}.II,
+	- filling-in and avoiding leaking-out \cite{li_computational_2001, zhaoping_understanding_2014}
+	- temporal evolution of responses to texture border \cite{zhaoping_understanding_2014}, 
+	- the figure ground and medial axis effect \cite{zhaoping_v1_2003, zhaoping_understanding_2014}
+	- summation curve for grating disc inputs showing cross-orientation enhancement \cite{zhaoping_v1_2003, zhaoping_understanding_2014},
+	- dynamical properties of reduced two-point EI network \cite{li_computational_1998, zhaoping_understanding_2014}
+
+2. Predictions:
+- see Fig.\ \ref{fig:experiment}.II, for medium to high input intensities
+- for higher number of rows border localization bias positive, i.e.\ towards texture parallel to border, confirming simulation by \cite{li_can_2000}, but negative for lower number of rows; confirming simplified argument by \cite{popple_testing_2001}
+- additionally, saliency of border higher for higher number of rows, because for lower rows co-linear excitation of texture vertically oriented to border dominates over iso-oriented inhibition between small number of rows
+
+% 3. Data:
+% - ...
+
+\begin{figure}[htbp!] % TODO: update figure
+	\centering
+	\includegraphics[width=\linewidth]{figures/Figure_1.pdf}
+	\caption{Model replication. I. Sketch of neural circuit model of primary visual cortex (V1). Top: The model consists of two cell types, excitatory pyramidal cells, which are the in- and output of the model, and inhibitory interneurons. Bottom: Orientation and location of bars depict tuning and receptive field of edge / bar detector neurons in V1.  The excitatory co-linear and inhibitory iso-oriented interactions mediate contextual influences underlying saliency computations in V1. II. Inputs and replicated outputs for model calibration. A-D show contextual effects dominated by iso-orientation supression. E-H show contextual effects dominated by co-linear facilitation.}
+	\label{fig:model}
+\end{figure}
+
+\begin{figure}[htbp!] % TODO: update figure
+	\centering
+	\includegraphics[width=\linewidth]{figures/Figure_2.pdf}
+	\caption{Experimental design and predicitions. I. One example trial of the proposed experiment. After subjects fixate for 400 ms, the stimulus with two texture borders of varying horizontal displacement and number of rows is shown in the periphery for 120 ms. Visual backward masking afterwards reduces confounding extrastriatal feedback. Subjects are forced to decide between two alternative choices: is the upper texture border left or right of the lower texture border? II. Predicted saliency and localization of borders given orientation textures of varying height. The absolute value and sign of the x-axis show border saliency (z-scored, here found to be positive for all predictions) and the direction of the localization bias as indicated by the sketched texture border above the y-axis, respectively. The y-axis shows the number of rows of the input texture, with examplatory predicted saliency maps for the case of 3 and 100 rows. For medium to high input intensity and increasing number of rows, the border saliency increases after a sign switch of the border localization bias. Due to wrap-around boundary conditions and an model input size of 100 rows, 100 rows indicates the case of texture ends beyond the visual input field.}
+	\label{fig:experiment}
+\end{figure}
+
+\section{Discussion} 
+% Discussion & conclussions: The Discussion should begin with a statement of the important findings of the study. Subsequent sections can address technical issues, analysis of the results, and the implications of the work. Again, it is often helpful to break down the Discussion into subsections that focus on particular topics. It is proper to include a section that summarizes and expands upon conclusions that may be drawn from the work (raises open questions, proposes future studies). 
+
+- important findings:
+	- V1 model successfully replicated, with minor improvements to documentation
+	- confirmed switch in localization bias and predicted decreased saliency of texture border
+	- designed improved experiment to test this prediction
+	
+- limitations:
+	- leaking-out in replicated and original model in dependence of numerical accuracy
+	- predictions made for approximate case, not real stimuli
+	- missing data collection and analysis 
+
+- implications of the work, open questions / future studies:
+	- biases and sensitivity might falsify V1 model explanation -> support alternative neural mechanisms, e.g.\ in higher visual areas % TODO: maybe add additional sources since then!
+	- else, assuming visual size estimation consistent with border localization, model predicts visual size illusion inverse to well-known Helmholtz illusion \cite{helmholtz_handbuch_1867}
+	- future comparative study of both illusions for new experimental and theoretical avenue to understand contributions of V1 and higher visual areas to visual texture segmentation and size perception
+
+
+\section{Acknowledgements}
+% These may include thanks to technicians or colleagues who have helped with the work or provided materials. 
+- supervision and funding by Li Zhaoping
+- support by fellow lab members Vladislav Aksiotis, Fani Lohrmann and Maria Pavlovic. 

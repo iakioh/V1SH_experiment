@@ -1,0 +1,512 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{li_can_2000}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=ae6f64f7b429f6425fbe070323390f1b}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {{MIT} Press}%
+      }
+      \strng{namehash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{fullhash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{fullhashraw}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{bibnamehash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{authorbibnamehash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{authornamehash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{authorfullhash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{authorfullhashraw}{ae6f64f7b429f6425fbe070323390f1b}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eventtitle}{Thirteenth Annual Neural Information Processing Systems Conference ({NIPS} 1999)}
+      \field{month}{6}
+      \field{title}{Can {VI} Mechanisms Account for Figure-Ground and Medial Axis Effects?}
+      \field{urlday}{30}
+      \field{urlmonth}{9}
+      \field{urlyear}{2025}
+      \field{year}{2000}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{136\bibrangedash 142}
+      \range{pages}{7}
+      \verb{urlraw}
+      \verb http://papers.nips.cc/paper/1746-can-vi-mechanisms-account-for-figure-ground-and-medial-axis-effects.pdf
+      \endverb
+      \verb{url}
+      \verb http://papers.nips.cc/paper/1746-can-vi-mechanisms-account-for-figure-ground-and-medial-axis-effects.pdf
+      \endverb
+    \endentry
+    \entry{popple_testing_2001}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=bb369df02e668d1a1c484cd17c2841b5}{%
+           family={Popple},
+           familyi={P\bibinitperiod},
+           given={Ariella},
+           giveni={A\bibinitperiod}}}%
+        {{hash=4ed9c14b6bd6ccecaacc4b825788cf4c}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Zhaoping},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{bd196d7049d75d30bde141d0c45aa74d}
+      \strng{fullhash}{bd196d7049d75d30bde141d0c45aa74d}
+      \strng{fullhashraw}{bd196d7049d75d30bde141d0c45aa74d}
+      \strng{bibnamehash}{bd196d7049d75d30bde141d0c45aa74d}
+      \strng{authorbibnamehash}{bd196d7049d75d30bde141d0c45aa74d}
+      \strng{authornamehash}{bd196d7049d75d30bde141d0c45aa74d}
+      \strng{authorfullhash}{bd196d7049d75d30bde141d0c45aa74d}
+      \strng{authorfullhashraw}{bd196d7049d75d30bde141d0c45aa74d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{issn}{1534-7362}
+      \field{journaltitle}{Journal of Vision}
+      \field{month}{12}
+      \field{number}{3}
+      \field{shortjournal}{Journal of Vision}
+      \field{title}{Testing a V1 model —- Perceptual biases and saliency effects}
+      \field{urlday}{22}
+      \field{urlmonth}{9}
+      \field{urlyear}{2025}
+      \field{volume}{1}
+      \field{year}{2001}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{148}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1167/1.3.148
+      \endverb
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\kai.rothe\\Zotero\\storage\\LS7SNQWF\\1.3.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1167/1.3.148
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1167/1.3.148
+      \endverb
+    \endentry
+    \entry{liu_testing_2019}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=ce084360cc68e7db4fe6cae1287b3adf}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=1dc52e1ce9bd374de98fd7ac929396e9}{%
+           family={Zhaoping},
+           familyi={Z\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pion Ltd.}%
+      }
+      \strng{namehash}{072cc822fd144a35c945a0692b735ed5}
+      \strng{fullhash}{072cc822fd144a35c945a0692b735ed5}
+      \strng{fullhashraw}{072cc822fd144a35c945a0692b735ed5}
+      \strng{bibnamehash}{072cc822fd144a35c945a0692b735ed5}
+      \strng{authorbibnamehash}{072cc822fd144a35c945a0692b735ed5}
+      \strng{authornamehash}{072cc822fd144a35c945a0692b735ed5}
+      \strng{authorfullhash}{072cc822fd144a35c945a0692b735ed5}
+      \strng{authorfullhashraw}{072cc822fd144a35c945a0692b735ed5}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{eventtitle}{42nd European Conference on Visual Perception ({ECVP} 2019)}
+      \field{month}{9}
+      \field{shorttitle}{Testing a prediction of the central-peripheral dichotomy in visual inference}
+      \field{title}{Testing a prediction of the central-peripheral dichotomy in visual inference: visual backward masking is weaker in the peripheral visual field}
+      \field{urlday}{7}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{188}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1177/0301006619863862
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\krothe\\Zotero\\storage\\R8JYUXH2\\Liu und Zhaoping - 2019 - Testing a prediction of the central-peripheral dichotomy in visual inference visual backward maskin.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://journals.sagepub.com/doi/pdf/10.1177/0301006619863862
+      \endverb
+      \verb{url}
+      \verb https://journals.sagepub.com/doi/pdf/10.1177/0301006619863862
+      \endverb
+    \endentry
+    \entry{zhaoping_feedback_2017}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d150e925ef3f14f9dde39f1c91ba0a64}{%
+           family={Zhaoping},
+           familyi={Z\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{fullhash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{fullhashraw}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{bibnamehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authorbibnamehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authornamehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authorfullhash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authorfullhashraw}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \field{extraname}{1}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Eye movements bring attended visual inputs to the center of vision for further processing. Thus, central and peripheral vision should have different functional roles. Here, we use observations of visual perception under dichoptic stimuli to infer that there is a difference in the top-down feedback from higher brain centers to primary visual cortex. Visual stimuli to the two eyes were designed such that the sum and difference of the binocular input from the two eyes have the form of two different gratings. These gratings differed in their motion direction, tilt direction, or color, and duly evoked ambiguous percepts for the corresponding feature. Observers were more likely to perceive the feature in the binocular summation rather than the difference channel. However, this perceptual bias towards the binocular summation signal was weaker or absent in peripheral vision, even when central and peripheral vision showed no difference in contrast sensitivity to the binocular summation signal relative to that to the binocular difference signal. We propose that this bias can arise from top-down feedback as part of an analysis-by-synthesis computation. The feedback is of the input predicted using prior information by the upper level perceptual hypothesis about the visual scene; the hypothesis is verified by comparing the feedback with the actual visual input. We illustrate this process using a conceptual circuit model. In this framework, a bias towards binocular summation can arise from the prior knowledge that inputs are usually correlated between the two eyes. Accordingly, a weaker bias in the periphery implies that the top-down feedback is weaker there. Testable experimental predictions are presented and discussed.}
+      \field{day}{1}
+      \field{issn}{0042-6989}
+      \field{journaltitle}{Vision Research}
+      \field{month}{7}
+      \field{shortjournal}{Vision Research}
+      \field{shorttitle}{Feedback from higher to lower visual areas for visual recognition may be weaker in the periphery}
+      \field{title}{Feedback from higher to lower visual areas for visual recognition may be weaker in the periphery: Glimpses from the perception of brief dichoptic stimuli}
+      \field{urlday}{16}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{volume}{136}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{32\bibrangedash 49}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1016/j.visres.2017.05.002
+      \endverb
+      \verb{file}
+      \verb ScienceDirect Full Text PDF:C\:\\Users\\krothe\\Zotero\\storage\\YSFNIEJP\\Zhaoping - 2017 - Feedback from higher to lower visual areas for visual recognition may be weaker in the periphery Gl.pdf:application/pdf;ScienceDirect Snapshot:C\:\\Users\\krothe\\Zotero\\storage\\URQP3BCW\\S0042698917300858.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0042698917300858
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0042698917300858
+      \endverb
+    \endentry
+    \entry{li_neural_1998}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=ae6f64f7b429f6425fbe070323390f1b}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{fullhash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{fullhashraw}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{bibnamehash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{authorbibnamehash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{authornamehash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{authorfullhash}{ae6f64f7b429f6425fbe070323390f1b}
+      \strng{authorfullhashraw}{ae6f64f7b429f6425fbe070323390f1b}
+      \field{extraname}{2}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{15}
+      \field{issn}{0899-7667}
+      \field{journaltitle}{Neural Computation}
+      \field{month}{5}
+      \field{number}{4}
+      \field{shortjournal}{Neural Comput}
+      \field{title}{A neural model of contour integration in the primary visual cortex}
+      \field{volume}{10}
+      \field{year}{1998}
+      \field{dateera}{ce}
+      \field{pages}{903\bibrangedash 940}
+      \range{pages}{38}
+      \verb{doi}
+      \verb 10.1162/089976698300017557
+      \endverb
+      \verb{file}
+      \verb Eingereichte Version:C\:\\Users\\kai.rothe\\Zotero\\storage\\9BZBJZ8X\\Li - 1998 - A neural model of contour integration in the primary visual cortex.pdf:application/pdf
+      \endverb
+      \keyw{Feedback,Form Perception,Linear Models,Mental Processes,Models,Neurological,Oscillometry,Time Factors,Visual Cortex}
+    \endentry
+    \entry{zhaoping_understanding_2014}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=d150e925ef3f14f9dde39f1c91ba0a64}{%
+           family={Zhaoping},
+           familyi={Z\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University {PressOxford}}%
+      }
+      \strng{namehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{fullhash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{fullhashraw}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{bibnamehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authorbibnamehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authornamehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authorfullhash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authorfullhashraw}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \field{extraname}{2}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{day}{8}
+      \field{edition}{1}
+      \field{langid}{english}
+      \field{month}{5}
+      \field{shorttitle}{Understanding Vision}
+      \field{title}{Understanding Vision: Theory, Models, and Data}
+      \field{urlday}{22}
+      \field{urlmonth}{9}
+      \field{urlyear}{2025}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1093/acprof:oso/9780199564668.001.0001
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\kai.rothe\\Zotero\\storage\\LJPAH29I\\Zhaoping - 2014 - Understanding Vision Theory, Models, and Data.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://academic.oup.com/book/8719
+      \endverb
+      \verb{url}
+      \verb https://academic.oup.com/book/8719
+      \endverb
+    \endentry
+    \entry{li_computational_2001}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=4ed9c14b6bd6ccecaacc4b825788cf4c}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Zhaoping},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{4ed9c14b6bd6ccecaacc4b825788cf4c}
+      \strng{fullhash}{4ed9c14b6bd6ccecaacc4b825788cf4c}
+      \strng{fullhashraw}{4ed9c14b6bd6ccecaacc4b825788cf4c}
+      \strng{bibnamehash}{4ed9c14b6bd6ccecaacc4b825788cf4c}
+      \strng{authorbibnamehash}{4ed9c14b6bd6ccecaacc4b825788cf4c}
+      \strng{authornamehash}{4ed9c14b6bd6ccecaacc4b825788cf4c}
+      \strng{authorfullhash}{4ed9c14b6bd6ccecaacc4b825788cf4c}
+      \strng{authorfullhashraw}{4ed9c14b6bd6ccecaacc4b825788cf4c}
+      \field{extraname}{3}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{issn}{0899-7667, 1530-888X}
+      \field{journaltitle}{Neural Computation}
+      \field{langid}{english}
+      \field{month}{8}
+      \field{number}{8}
+      \field{shortjournal}{Neural Computation}
+      \field{title}{Computational Design and Nonlinear Dynamics of a Recurrent Network Model of the Primary Visual Cortex*}
+      \field{urlday}{22}
+      \field{urlmonth}{9}
+      \field{urlyear}{2025}
+      \field{volume}{13}
+      \field{year}{2001}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1749\bibrangedash 1780}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.1162/08997660152469332
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\kai.rothe\\Zotero\\storage\\8796UJDH\\Li - 2001 - Computational Design and Nonlinear Dynamics of a Recurrent Network Model of the Primary Visual Corte.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://direct.mit.edu/neco/article/13/8/1749-1780/6530
+      \endverb
+      \verb{url}
+      \verb https://direct.mit.edu/neco/article/13/8/1749-1780/6530
+      \endverb
+    \endentry
+    \entry{zhaoping_v1_2003}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d150e925ef3f14f9dde39f1c91ba0a64}{%
+           family={Zhaoping},
+           familyi={Z\bibinitperiod},
+           given={Li},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{fullhash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{fullhashraw}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{bibnamehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authorbibnamehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authornamehash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authorfullhash}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \strng{authorfullhashraw}{d150e925ef3f14f9dde39f1c91ba0a64}
+      \field{extraname}{3}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{issn}{0928-4257}
+      \field{journaltitle}{Journal of Physiology-Paris}
+      \field{month}{7}
+      \field{number}{4}
+      \field{series}{Neuroscience and Computation}
+      \field{shortjournal}{Journal of Physiology-Paris}
+      \field{title}{V1 mechanisms and some figure–ground and border effects}
+      \field{urlday}{30}
+      \field{urlmonth}{9}
+      \field{urlyear}{2025}
+      \field{volume}{97}
+      \field{year}{2003}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{503\bibrangedash 515}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1016/j.jphysparis.2004.01.008
+      \endverb
+      \verb{file}
+      \verb ScienceDirect Snapshot:C\:\\Users\\kai.rothe\\Zotero\\storage\\55HX66XA\\S0928425704000245.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0928425704000245
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0928425704000245
+      \endverb
+      \keyw{Closed contour,Contextual influences,Ripple effect,Segmentation,Shine through}
+    \endentry
+    \entry{li_computational_1998}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=4ed9c14b6bd6ccecaacc4b825788cf4c}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Zhaoping},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=ef0afbe0b4e15059c963e026fe213c34}{%
+           family={Dayan},
+           familyi={D\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{2cd4730bcf5f60ecfa3ec299fdf207e1}
+      \strng{fullhash}{2cd4730bcf5f60ecfa3ec299fdf207e1}
+      \strng{fullhashraw}{2cd4730bcf5f60ecfa3ec299fdf207e1}
+      \strng{bibnamehash}{2cd4730bcf5f60ecfa3ec299fdf207e1}
+      \strng{authorbibnamehash}{2cd4730bcf5f60ecfa3ec299fdf207e1}
+      \strng{authornamehash}{2cd4730bcf5f60ecfa3ec299fdf207e1}
+      \strng{authorfullhash}{2cd4730bcf5f60ecfa3ec299fdf207e1}
+      \strng{authorfullhashraw}{2cd4730bcf5f60ecfa3ec299fdf207e1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Advances in Neural Information Processing Systems}
+      \field{title}{Computational differences between asymmetrical and symmetrical networks}
+      \field{urlday}{16}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{volume}{11}
+      \field{year}{1998}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Available Version (via Google Scholar):C\:\\Users\\krothe\\Zotero\\storage\\A4GLF4FH\\Li und Dayan - 1998 - Computational differences between asymmetrical and symmetrical networks.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.neurips.cc/paper/1998/hash/020c8bfac8de160d4c5543b96d1fdede-Abstract.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.neurips.cc/paper/1998/hash/020c8bfac8de160d4c5543b96d1fdede-Abstract.html
+      \endverb
+    \endentry
+    \entry{helmholtz_handbuch_1867}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=b18e475210ebadcffcbb9eb360a03fe3}{%
+           family={Helmholtz},
+           familyi={H\bibinitperiod},
+           given={Hermann\bibnamedelima von},
+           giveni={H\bibinitperiod\bibinitdelim v\bibinitperiod}}}%
+      }
+      \name{editora}{1}{}{%
+        {{hash=560984f556b49fcf154fd46cd50dfbe9}{%
+           family={{University of California Libraries}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Leipzig : Leopold Voss}%
+      }
+      \strng{namehash}{b18e475210ebadcffcbb9eb360a03fe3}
+      \strng{fullhash}{b18e475210ebadcffcbb9eb360a03fe3}
+      \strng{fullhashraw}{b18e475210ebadcffcbb9eb360a03fe3}
+      \strng{bibnamehash}{b18e475210ebadcffcbb9eb360a03fe3}
+      \strng{authorbibnamehash}{b18e475210ebadcffcbb9eb360a03fe3}
+      \strng{authornamehash}{b18e475210ebadcffcbb9eb360a03fe3}
+      \strng{authorfullhash}{b18e475210ebadcffcbb9eb360a03fe3}
+      \strng{authorfullhashraw}{b18e475210ebadcffcbb9eb360a03fe3}
+      \strng{editorabibnamehash}{560984f556b49fcf154fd46cd50dfbe9}
+      \strng{editoranamehash}{560984f556b49fcf154fd46cd50dfbe9}
+      \strng{editorafullhash}{560984f556b49fcf154fd46cd50dfbe9}
+      \strng{editorafullhashraw}{560984f556b49fcf154fd46cd50dfbe9}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Bibliographies scattered throughout the work; Plates have separate title page: "Atlas von elf Tafeln zu H. Helmholtz Handbuch der physiologischen Optik, Allgemeine Encyclopädie der Physik, {IX}. Band. Leipzig, Leopold Voss. 1867."; Garrison-Morton}
+      \field{editoratype}{collaborator}
+      \field{pagetotal}{926}
+      \field{title}{Handbuch der physiologischen Optik}
+      \field{urlday}{16}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{year}{1867}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://archive.org/details/handbuchderphysi00helm
+      \endverb
+      \verb{url}
+      \verb http://archive.org/details/handbuchderphysi00helm
+      \endverb
+    \endentry
+  \enddatalist
+  \missing{something_about_feedback_speed?}
+\endrefsection
+\endinput
+
