@@ -1,5 +1,7 @@
 # Private data
 data/
+venv2/
+experiment/code/conditions_temp_*.csv
 
 # Unimportant code snippets
 trash/
@@ -211,3 +213,4 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+

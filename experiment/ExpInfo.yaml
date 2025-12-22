@@ -2,52 +2,76 @@
 
 Hardware:
   Display:
-    Type: "TestMonitor"
-    MeanLuminance_cd/m2: 40
-    RefreshRate_Hz: 70
-    ViewingDistance_cm: 100
+    Type: "HP ProBook 450 G8 Notebook PC"
+    MeanLuminance_cd/m2: "unkown"
+    RefreshRate_Hz: 60
+    ViewingDistance_cm: 60
     GammaCorrection: False
   EyeTracker:
     Usage: False
 
 Stimulus:
   Fixation:
-    Duration_s: 0.5
+    Duration_s: 0.7
     Shape: "circle"
     Color: "white"
     Diameter_degrees: 0.1
+  CentralExclusionZone:
+    Shape: "ellipse"
+    Width_degrees: 10.0
+    Height_degrees: 6.0
   GaborPatch:
-    Duration_s: 0.15
-    MitchellContrast: 0.5
-    SpatialFrequency_cpd: 12
-    Sigma_degrees: 0.04
+    Duration_s: 0.1
+    MitchellContrast: 1.0
+    SpatialFrequency_cpd: 3
+    Sigma_degrees: 0.16
     PatchSize_sigma: 6
     Orientation_degrees: 
-      - 0
-      - 15
-      - 30
-      - 45
-      - 60
-      - 75
       - 90
+      - 0
   Grid:
     Rows: 
       - 1
       - 12
-    Columns: 48
   Jitter:
     Type: "uniform"
-    Range_sigma: 1.2
-  VerticalSeperation_degrees: 0.86
-  HorizontalDisplacement_rows: 
-    - 1.0
-    - 0.5
-    - 0.0
-    - -0.5
-    - -1.0
+    Range_sigma: 0.6
+  VerticalSeperation_degrees: 1.72
+  Eccentricity_degrees: 
+    x: 10.0
+    y: 5.0
+  HorizontalDisplacement_cols: 
+    Minimum: -3.0
+    Maximum: 3.0
+    StepSize: 0.25
+  Blank:
+    Duration_s: 0.2
+
 
 Procedure&Conditions:
-  NumberOfRepetitions: 20
-  NumberOfPracticeRepetitions: 1
-  RandomSeed: 42
+  MaxTime_min: Null
+  NumberOfTrials: 300
+  NumberOfPracticeTrials: 30
+  RandomSeed: null
+  Staircase:
+    LapseRate: 
+      - 0.0
+      - 0.05
+      - 0.1
+      - 0.15
+      - 0.2
+      - 0.25
+      - 0.3
+      - 0.35
+      - 0.4
+      - 0.45
+    Mean_cols:
+      Minimum: -2.5
+      Maximum: 2.5
+      StepSize: 0.25
+    StandardDeviation_cols:
+      Minimum: 0.1
+      Maximum: 5.0
+      StepSize: 0.1
+
   

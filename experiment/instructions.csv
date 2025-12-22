@@ -1,14 +1,14 @@
-n_row,displacement_rows,duration_s,comment
-12,2.0,120, First a circle in the center is shown. Your task is to look at that circle and keep your gaze fixed on it. Keep your gaze fixed to the center for the whole time. Therewhile you are shown an image with textures. The upper texture has a boundary and the lower texture has a boundary as well. Your task is to decide weather the UPPER boundary is more to the left or the right of the lower texture. If you think that the UPPER boundary is more to the LEFT: press the "left" button. If you think that the UPPER boundary is more to the RIGHT: press the "right" button. Let subject ask questions.
-12,-2.0,120, 
-12,1.0,120, Don't forget to always keep your gaze fixed to the center for the whole time. Use the circle to look at the center again.
-12,-1.0,120,
-1,2.0,120, The texture can have different sizes. Your task is still to decide if the UPPER texture boundary is to the left or right of the lower texture boundary. Let subject ask questions.
-1,-2.0,120,
-12,0.5,120, If you are unsure: guess. But don't give up - use any hint or clue or feeling you might have. Let subject ask questions.
-1,0.5,120, 
-12,-1.0,1, The image is only shown shortly. This might make it more difficult to locate and compare the boundaries. But don't give up - use any hint or clue or feeling you have. Let subject ask questions.
-1,0.5,1,
-1,1.0, 1, The task might get repetitive. But take it like a competition or video game. Don't give up.
-12,-0.5, 0.15, 
-1, -0.5, 0.15, Let subject ask questions. Repeat if necessary.
+n_row,displacement_cols,orientation_degrees,stimulus_duration_s,instruction
+12,2.0,0,120,First a circle in the center is shown. Your task is to look at that circle and keep your gaze fixed on it. Keep your gaze fixed to the center for the whole time. Therewhile you are shown an image with textures. The upper texture has a boundary and the lower texture has a boundary as well. Your task is to decide weather the UPPER boundary is more to the left or the right of the lower texture. If you think that the UPPER boundary is more to the LEFT: press the "left" button. If you think that the UPPER boundary is more to the RIGHT: press the "right" button. Let subject ask questions.
+12,-2.0,90,120,
+12,1.0,90,120,Don't forget to always keep your gaze fixed to the center for the whole time. Use the circle to look at the center again.
+12,-1.0,0,120,
+1,2.0,0,120,The texture can have different sizes. Your task is still to decide if the UPPER texture boundary is to the left or right of the lower texture boundary. Let subject ask questions.
+1,-2.0,90,120,
+12,0.5,0,120,If you are unsure: guess. But don't give up - use any hint or clue or feeling you might have. Let subject ask questions.
+1,0.5,90,120,
+12,-1.0,0,1,The image is only shown shortly. This might make it more difficult to locate and compare the boundaries. But don't give up - use any hint or clue or feeling you have. Let subject ask questions.
+1,0.5,0,0.5,
+1,1.0,90,0.3,The task might get repetitive. But take it like a competition or video game. Don't give up.
+12,-0.5,90,0.15,
+1,-0.5,0,0.1,Let subject ask questions. Repeat if necessary.
