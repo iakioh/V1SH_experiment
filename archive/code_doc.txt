@@ -1,0 +1,10 @@
+Documentation that outlines..
+- any changes made to the code, 
+- why the change was introduced, and 
+- where the change is located in the file (line numbers)
+
+Before any changes are made, a copied version of the code needs to be saved in archive/code
+
+Changes: 
+- Example change description, because templates are useful, line 42
+- 

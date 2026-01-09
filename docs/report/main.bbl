@@ -139,8 +139,8 @@
       \strng{authornamehash}{072cc822fd144a35c945a0692b735ed5}
       \strng{authorfullhash}{072cc822fd144a35c945a0692b735ed5}
       \strng{authorfullhashraw}{072cc822fd144a35c945a0692b735ed5}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{eventtitle}{42nd European Conference on Visual Perception ({ECVP} 2019)}
@@ -185,8 +185,8 @@
       \strng{authorfullhash}{d150e925ef3f14f9dde39f1c91ba0a64}
       \strng{authorfullhashraw}{d150e925ef3f14f9dde39f1c91ba0a64}
       \field{extraname}{1}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{Eye movements bring attended visual inputs to the center of vision for further processing. Thus, central and peripheral vision should have different functional roles. Here, we use observations of visual perception under dichoptic stimuli to infer that there is a difference in the top-down feedback from higher brain centers to primary visual cortex. Visual stimuli to the two eyes were designed such that the sum and difference of the binocular input from the two eyes have the form of two different gratings. These gratings differed in their motion direction, tilt direction, or color, and duly evoked ambiguous percepts for the corresponding feature. Observers were more likely to perceive the feature in the binocular summation rather than the difference channel. However, this perceptual bias towards the binocular summation signal was weaker or absent in peripheral vision, even when central and peripheral vision showed no difference in contrast sensitivity to the binocular summation signal relative to that to the binocular difference signal. We propose that this bias can arise from top-down feedback as part of an analysis-by-synthesis computation. The feedback is of the input predicted using prior information by the upper level perceptual hypothesis about the visual scene; the hypothesis is verified by comparing the feedback with the actual visual input. We illustrate this process using a conceptual circuit model. In this framework, a bias towards binocular summation can arise from the prior knowledge that inputs are usually correlated between the two eyes. Accordingly, a weaker bias in the periphery implies that the top-down feedback is weaker there. Testable experimental predictions are presented and discussed.}
@@ -197,7 +197,7 @@
       \field{shortjournal}{Vision Research}
       \field{shorttitle}{Feedback from higher to lower visual areas for visual recognition may be weaker in the periphery}
       \field{title}{Feedback from higher to lower visual areas for visual recognition may be weaker in the periphery: Glimpses from the perception of brief dichoptic stimuli}
-      \field{urlday}{16}
+      \field{urlday}{7}
       \field{urlmonth}{12}
       \field{urlyear}{2025}
       \field{volume}{136}
@@ -210,7 +210,7 @@
       \verb 10.1016/j.visres.2017.05.002
       \endverb
       \verb{file}
-      \verb ScienceDirect Full Text PDF:C\:\\Users\\krothe\\Zotero\\storage\\YSFNIEJP\\Zhaoping - 2017 - Feedback from higher to lower visual areas for visual recognition may be weaker in the periphery Gl.pdf:application/pdf;ScienceDirect Snapshot:C\:\\Users\\krothe\\Zotero\\storage\\URQP3BCW\\S0042698917300858.html:text/html
+      \verb ScienceDirect Full Text PDF:C\:\\Users\\kai.rothe\\Zotero\\storage\\3PFFSM2U\\Zhaoping - 2017 - Feedback from higher to lower visual areas for visual recognition may be weaker in the periphery Gl.pdf:application/pdf;ScienceDirect Snapshot:C\:\\Users\\kai.rothe\\Zotero\\storage\\P34FY324\\S0042698917300858.html:text/html
       \endverb
       \verb{urlraw}
       \verb https://www.sciencedirect.com/science/article/pii/S0042698917300858
@@ -218,6 +218,7 @@
       \verb{url}
       \verb https://www.sciencedirect.com/science/article/pii/S0042698917300858
       \endverb
+      \keyw{Analysis-by-synthesis,Central vision,Dichoptic stimuli,Peripheral vision,Primary visual cortex (V1),Top-down feedback,Visual decoding}
     \endentry
     \entry{li_neural_1998}{article}{}{}
       \name{author}{1}{}{%
@@ -236,8 +237,8 @@
       \strng{authorfullhash}{ae6f64f7b429f6425fbe070323390f1b}
       \strng{authorfullhashraw}{ae6f64f7b429f6425fbe070323390f1b}
       \field{extraname}{2}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{15}
@@ -280,8 +281,8 @@
       \strng{authorfullhash}{d150e925ef3f14f9dde39f1c91ba0a64}
       \strng{authorfullhashraw}{d150e925ef3f14f9dde39f1c91ba0a64}
       \field{extraname}{2}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{day}{8}
@@ -309,6 +310,93 @@
       \verb https://academic.oup.com/book/8719
       \endverb
     \endentry
+    \entry{peirce_psychopy2_2019}{article}{}{}
+      \name{author}{8}{}{%
+        {{hash=f2e4ce272b4ea0700e7efe8ff3cf8f34}{%
+           family={Peirce},
+           familyi={P\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a15a04a473b8bb5f754722fc04c8e408}{%
+           family={Gray},
+           familyi={G\bibinitperiod},
+           given={Jeremy\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=693bf13408fccc3c446a33dac9ad35c5}{%
+           family={Simpson},
+           familyi={S\bibinitperiod},
+           given={Sol},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9e37b250da187ee820cc4fca78ef61c9}{%
+           family={{MacAskill}},
+           familyi={M\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=bae96ab1c1a55e1e9e83948109508857}{%
+           family={Höchenberger},
+           familyi={H\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=8faaf4d6bb5eedc495a92ec28d3609ab}{%
+           family={Sogo},
+           familyi={S\bibinitperiod},
+           given={Hiroyuki},
+           giveni={H\bibinitperiod}}}%
+        {{hash=15ea00e86864b07ebb5c463db9664b35}{%
+           family={Kastman},
+           familyi={K\bibinitperiod},
+           given={Erik},
+           giveni={E\bibinitperiod}}}%
+        {{hash=afcf8214ddcc7a7545319db05af0a19a}{%
+           family={Lindeløv},
+           familyi={L\bibinitperiod},
+           given={Jonas\bibnamedelima Kristoffer},
+           giveni={J\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{4cbe73db80033e25adda6fc935a5dd03}
+      \strng{fullhash}{4aff3326ecf56239a206e56b2dc1199a}
+      \strng{fullhashraw}{4aff3326ecf56239a206e56b2dc1199a}
+      \strng{bibnamehash}{4cbe73db80033e25adda6fc935a5dd03}
+      \strng{authorbibnamehash}{4cbe73db80033e25adda6fc935a5dd03}
+      \strng{authornamehash}{4cbe73db80033e25adda6fc935a5dd03}
+      \strng{authorfullhash}{4aff3326ecf56239a206e56b2dc1199a}
+      \strng{authorfullhashraw}{4aff3326ecf56239a206e56b2dc1199a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{{PsychoPy} is an application for the creation of experiments in behavioral science (psychology, neuroscience, linguistics, etc.) with precise spatial control and timing of stimuli. It now provides a choice of interface; users can write scripts in Python if they choose, while those who prefer to construct experiments graphically can use the new Builder interface. Here we describe the features that have been added over the last 10 years of its development. The most notable addition has been that Builder interface, allowing users to create studies with minimal or no programming, while also allowing the insertion of Python code for maximal flexibility. We also present some of the other new features, including further stimulus options, asynchronous time-stamped hardware polling, and better support for open science and reproducibility. Tens of thousands of users now launch {PsychoPy} every month, and more than 90 people have contributed to the code. We discuss the current state of the project, as well as plans for the future.}
+      \field{day}{1}
+      \field{issn}{1554-3528}
+      \field{journaltitle}{Behavior Research Methods}
+      \field{langid}{english}
+      \field{month}{2}
+      \field{number}{1}
+      \field{shortjournal}{Behav Res}
+      \field{shorttitle}{{PsychoPy}2}
+      \field{title}{{PsychoPy}2: Experiments in behavior made easy}
+      \field{urlday}{9}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{51}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{195\bibrangedash 203}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.3758/s13428-018-01193-y
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:C\:\\Users\\krothe\\Zotero\\storage\\I5FHABVA\\Peirce et al. - 2019 - PsychoPy2 Experiments in behavior made easy.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.3758/s13428-018-01193-y
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.3758/s13428-018-01193-y
+      \endverb
+    \endentry
     \entry{li_computational_2001}{article}{}{}
       \name{author}{1}{}{%
         {{hash=4ed9c14b6bd6ccecaacc4b825788cf4c}{%
@@ -326,8 +414,8 @@
       \strng{authorfullhash}{4ed9c14b6bd6ccecaacc4b825788cf4c}
       \strng{authorfullhashraw}{4ed9c14b6bd6ccecaacc4b825788cf4c}
       \field{extraname}{3}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{1}
@@ -377,8 +465,8 @@
       \strng{authorfullhash}{d150e925ef3f14f9dde39f1c91ba0a64}
       \strng{authorfullhashraw}{d150e925ef3f14f9dde39f1c91ba0a64}
       \field{extraname}{3}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{day}{1}
@@ -433,8 +521,8 @@
       \strng{authornamehash}{2cd4730bcf5f60ecfa3ec299fdf207e1}
       \strng{authorfullhash}{2cd4730bcf5f60ecfa3ec299fdf207e1}
       \strng{authorfullhashraw}{2cd4730bcf5f60ecfa3ec299fdf207e1}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Advances in Neural Information Processing Systems}
@@ -484,8 +572,8 @@
       \strng{editoranamehash}{560984f556b49fcf154fd46cd50dfbe9}
       \strng{editorafullhash}{560984f556b49fcf154fd46cd50dfbe9}
       \strng{editorafullhashraw}{560984f556b49fcf154fd46cd50dfbe9}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Bibliographies scattered throughout the work; Plates have separate title page: "Atlas von elf Tafeln zu H. Helmholtz Handbuch der physiologischen Optik, Allgemeine Encyclopädie der Physik, {IX}. Band. Leipzig, Leopold Voss. 1867."; Garrison-Morton}
@@ -506,7 +594,8 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{something_about_feedback_speed?}
+  \missing{python_questplus_package}
+  \missing{watson_questplus_2017}
 \endrefsection
 \endinput
 
