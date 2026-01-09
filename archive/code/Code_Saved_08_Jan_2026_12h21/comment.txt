@@ -1,0 +1,1 @@
+afterwards added optional initializatrion of questplus staircase by previous sessions.

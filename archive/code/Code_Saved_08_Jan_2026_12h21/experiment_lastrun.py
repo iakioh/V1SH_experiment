@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2025.1.1),
-    on Januar 08, 2026, at 15:50
+    on Januar 07, 2026, at 11:48
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -256,7 +256,6 @@ expInfo = {
     'viewing_distance_cm': '60',
     'save_in': 'personal',
     'session': '01',
-    'session_to_load': 'none',
     'ID': '001',
     'first_name': 'Kai',
     'surname': 'Rothe',
@@ -621,14 +620,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Preparation" ---
     # Run 'Begin Experiment' code from GetExperimentalInfo
-    # get expInfo for initializing the staircase later
-    subject_id = expInfo["ID"]
-    session_to_load = expInfo["session_to_load"]
-    assert session_to_load == "none" or session_to_load == "last" or session_to_load == "all", "session_to_load must be either 'none', 'all' or 'last'."
-    session_id_string = expInfo['session']
-    data_path = os.path.join("..", "..", "data", "raw")
-    print(f"Load sessions from data path as: {data_path}")
-    
     # Pre-compute and select eccentricities
     session_index = int(expInfo["session"]) - 1 # expInfo["session"] starts with "001"
     abs_x_eccentricity_degrees = abs(x_eccentricity_degrees) / 2 # degrees
@@ -730,32 +721,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 func = "norm_cdf_2", # assumes lapse rate == lower asymptote
                 stim_scale = "linear"
             )
-    
-    if session_to_load != "none": 
-        # initialize staircases with data from previous / last session
-        for root, _, files in os.walk(data_path):
-            directory_name = os.path.basename(root) 
-            last_session_id_string = f"{int(session_id_string)-1:02d}"
-            if (session_to_load == "all" and directory_name[:5] == f"ID{subject_id}") or (session_to_load == "last" and directory_name[:8] == f"ID{subject_id}S{last_session_id_string}"):
-                for key, staircase in staircases.items():
-                    for file in files: 
-                        if file == "questplus_staircase_" + key + ".json":
-                            # Load previous stimulus response pairs
-                            file_path = os.path.join(root, file)
-                            previous_stimuli = []
-                            previous_responses = []
-                            with open(file_path, 'r') as f:  # Open in text mode
-                                text = f.read()  # Load JSON data
-                                previous_staircase = questplus.qp.QuestPlus.from_json(text)
-                                previous_stimuli = previous_staircase.stim_history
-                                previous_responses = previous_staircase.resp_history
-                            
-                            # Update staircase
-                            print(f"Updating staircase {key} with data {directory_name}/{file}")
-                            for stim, resp in zip(previous_stimuli, previous_responses):
-                                # print(stim, resp)
-                                staircase.update(stim = stim, outcome = resp)
-     
     conditions_df = pd.DataFrame(conditions, columns=['n_row', 'orientation_degrees'])  
     conditions_df['session'] = session_index
     conditions_df['stimulus_frames'] = stimulus_frames_
@@ -2082,9 +2047,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # Update staircase
             if trial_variables["state"] == "test":
                 # staircase: positive == towards the upper texture parallely oriented to border
-                if trial_variables["orientation_degrees"] < 90: # right upper texture more parallel to border; TODO: should be 45 instead of 90?
+                if trial_variables["orientation_degrees"] < 90: # right upper texture more parallel to border
                     response = 1 if (GetResponse.keys == "right") else 0
-                elif trial_variables["orientation_degrees"] >= 90: # left upper texture more parallel to border; TODO: should be 45 instead of 90?
+                elif trial_variables["orientation_degrees"] >= 90: # left upper texture more parallel to border
                     response = 1 if (GetResponse.keys == "left") else 0
                 STAIRCASE.update(stim=STIMULUS_DICT, outcome={"response": response}) # variable "staircase" and "stimulus_dict" already selected at begin routine
             # Run 'End Routine' code from DisplayMask
@@ -3120,9 +3085,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # Update staircase
             if trial_variables["state"] == "test":
                 # staircase: positive == towards the upper texture parallely oriented to border
-                if trial_variables["orientation_degrees"] < 90: # right upper texture more parallel to border; TODO: should be 45 instead of 90?
+                if trial_variables["orientation_degrees"] < 90: # right upper texture more parallel to border
                     response = 1 if (GetResponse.keys == "right") else 0
-                elif trial_variables["orientation_degrees"] >= 90: # left upper texture more parallel to border; TODO: should be 45 instead of 90?
+                elif trial_variables["orientation_degrees"] >= 90: # left upper texture more parallel to border
                     response = 1 if (GetResponse.keys == "left") else 0
                 STAIRCASE.update(stim=STIMULUS_DICT, outcome={"response": response}) # variable "staircase" and "stimulus_dict" already selected at begin routine
             # Run 'End Routine' code from DisplayMask
@@ -4033,9 +3998,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # Update staircase
         if trial_variables["state"] == "test":
             # staircase: positive == towards the upper texture parallely oriented to border
-            if trial_variables["orientation_degrees"] < 90: # right upper texture more parallel to border; TODO: should be 45 instead of 90?
+            if trial_variables["orientation_degrees"] < 90: # right upper texture more parallel to border
                 response = 1 if (GetResponse.keys == "right") else 0
-            elif trial_variables["orientation_degrees"] >= 90: # left upper texture more parallel to border; TODO: should be 45 instead of 90?
+            elif trial_variables["orientation_degrees"] >= 90: # left upper texture more parallel to border
                 response = 1 if (GetResponse.keys == "left") else 0
             STAIRCASE.update(stim=STIMULUS_DICT, outcome={"response": response}) # variable "staircase" and "stimulus_dict" already selected at begin routine
         # Run 'End Routine' code from DisplayMask

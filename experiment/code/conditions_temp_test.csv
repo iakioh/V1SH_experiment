@@ -1,5 +1,5 @@
 n_row,orientation_degrees,session,stimulus_frames,stimulus_duration_s,x_eccentricity_degrees,y_eccentricity_degrees,state,instruction
-1,90,0,6,0.1,5.0,2.5,test,
-1,0,0,6,0.1,5.0,2.5,test,
-12,90,0,6,0.1,5.0,2.5,test,
-12,0,0,6,0.1,5.0,2.5,test,
+1,90,7,6,0.1,-5.0,2.5,test,
+1,0,7,6,0.1,-5.0,2.5,test,
+12,90,7,6,0.1,-5.0,2.5,test,
+12,0,7,6,0.1,-5.0,2.5,test,

@@ -41,17 +41,17 @@ Stimulus:
     x: 10.0
     y: 5.0
   HorizontalDisplacement_cols: 
-    Minimum: -3.0
-    Maximum: 3.0
+    Minimum: -5.0
+    Maximum: 5.0
     StepSize: 0.25
   Blank:
     Duration_s: 0.2
 
 
 Procedure&Conditions:
-  MaxTime_min: Null
-  NumberOfTrials: 300
-  NumberOfPracticeTrials: 30
+  MaxTime_min: 15
+  NumberOfTrials: 1000
+  NumberOfPracticeTrials: 15
   RandomSeed: null
   Staircase:
     LapseRate: 
